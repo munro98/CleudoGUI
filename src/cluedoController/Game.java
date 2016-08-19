@@ -304,7 +304,7 @@ public class Game {
 		
 	}
 	
-	public void finnishTurn() {
+	public void endTurn() {
 		if (dice == 0) {
 			selectedPlayerIndex++;
 			if (selectedPlayerIndex >= alivePlayers.size()) {
@@ -322,7 +322,7 @@ public class Game {
 			board.moveUp(selectedPlayer);
 		}
 		gui.draw();
-		finnishTurn();
+		endTurn();
 	}
 	
 	public void moveDown() {
@@ -330,7 +330,7 @@ public class Game {
 			board.moveDown(selectedPlayer);
 		}
 		gui.draw();
-		finnishTurn();
+		endTurn();
 	}
 	
 	public void moveLeft() {
@@ -338,7 +338,7 @@ public class Game {
 			board.moveLeft(selectedPlayer);
 		}
 		gui.draw();
-		finnishTurn();
+		endTurn();
 	}
 	
 	public void moveRight() {
@@ -346,7 +346,7 @@ public class Game {
 			board.moveRight(selectedPlayer);
 		}
 		gui.draw();
-		finnishTurn();
+		endTurn();
 	}
 	
 	public void makeSuggestion(Player player) {
@@ -443,7 +443,7 @@ public class Game {
 		}
 		
 		dice = 0;
-		finnishTurn();
+		endTurn();
 	}
 	
 	private Player playerSelection() {		
