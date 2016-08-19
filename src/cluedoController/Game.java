@@ -436,6 +436,12 @@ public class Game {
 		board.remove(accuser);
 		gui.dialog(accuser.getName() + " made a false accusation and promptly died of a brain aneurysm.");
 		
+		// See if all the players have lost
+		if(alivePlayers.isEmpty()){
+			gui.dialog("ALl players failed to find the killer.\nGAME OVER!");
+			System.exit(0);
+		}
+		
 		dice = 0;
 		finnishTurn();
 	}
