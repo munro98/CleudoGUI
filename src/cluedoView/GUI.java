@@ -271,7 +271,7 @@ class Draw extends Canvas{
 							if (boardSpecialCells[row][col] == null)
 								g2.setColor(new Color(255, 235, 100));
 							else
-								g2.setColor(new Color(60, 60, 255)); // Blue
+								g2.setColor(new Color(80, 80, 255)); // Blue
 							break;
 						case NONE:
 							g2.setColor(new Color(100, 235, 100));
