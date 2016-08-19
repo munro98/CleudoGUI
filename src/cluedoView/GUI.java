@@ -153,6 +153,10 @@ public class GUI{
 	    //redraw();
 	}
 	
+	public void draw() {
+		draw.paint(frame.getGraphics());
+	}
+	
 	public int askPlayerCount() {
 		int playerCount = -1;
 		while (!(playerCount > 2 && playerCount < 7)) {
@@ -256,28 +260,36 @@ class Draw extends Canvas{
 
 		for (int row = 0; row < Board.SIZE; row++){
 			for (int col = 0; col < Board.SIZE; col++){
-				switch(boardCells[row][col]) {
-				case HALL:
-					if (boardSpecialCells[row][col] == null)
-						g2.setColor(new Color(255, 235, 100));
-					else
-						g2.setColor(new Color(0, 0, 255));
-					break;
-				case NONE:
-					g2.setColor(new Color(100, 235, 100));
-					break;
-				case ROOM:
-					g2.setColor(new Color(255, 255, 255));
-					break;
-				case STAIR:
-					break;
-				case START:
-					g2.setColor(new Color(100, 235, 100));
-					break;
-				default:
-					break;
-				}
-				g2.fill(new Rectangle(scale * col, scale * row, scale, scale));
+				
+				if (game.getBoard().getPlayerCells()[row][col] != null){ 
+					g2.setColor(new Color(255, 235, 200));
+					g2.fill(new Rectangle(scale * col, scale * row, scale, scale));
+					
+					g.drawString("P", scale * col, scale * col);
+				} else {
+					switch(boardCells[row][col]) {
+						case HALL:
+							if (boardSpecialCells[row][col] == null)
+								g2.setColor(new Color(255, 235, 100));
+							else
+								g2.setColor(new Color(0, 0, 255));
+							break;
+						case NONE:
+							g2.setColor(new Color(100, 235, 100));
+							break;
+						case ROOM:
+							g2.setColor(new Color(255, 255, 255));
+							break;
+						case STAIR:
+							break;
+						case START:
+							g2.setColor(new Color(100, 235, 100));
+							break;
+						default:
+							break;
+						}
+						g2.fill(new Rectangle(scale * col, scale * row, scale, scale));
+					}
 			}
 		}
 		

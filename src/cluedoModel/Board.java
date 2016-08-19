@@ -220,6 +220,10 @@ public class Board{
 		return this.boardCells;
 	}
 	
+	public Player[][] getPlayerCells() {
+		return this.playerCells;
+	}
+	
 
 	public RoomEntranceCell[][] getBoardEntranceCells() {
 		return boardSpecialCells;

@@ -63,7 +63,8 @@ public class Game {
 		GUI gui = new GUI(this);// testing code
 		
 		//Get playerCount
-		int playerCount = gui.askPlayerCount();
+		//int playerCount = gui.askPlayerCount();
+		int playerCount = 2;
 		
 		System.out.println(playerCount);
 		System.out.println("new Game!");
@@ -115,6 +116,7 @@ public class Game {
 		}
 		
 		board.spawnPlayers(activePlayers);
+		gui.draw();
 		
 		//Player selected = gui.selectPlayer(players);
 		//System.out.println(selected.getName());
