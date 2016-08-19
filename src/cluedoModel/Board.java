@@ -34,12 +34,12 @@ public class Board{
 	}
 	
 	String[] boardText = { 
-			"GGGGGGGGGGGGGGGGGGGGGGGGG",
+			"GGGGGGGGGNGGGGGNGGGGGGGGG",
 			"RRRRRRNNNNRRRRNNNNNRRRRRR",
 			"RRRRRRNNRRRRRRRRRNNRRRRRR",
 			"RRRRRRNNRRRRRRRRRNNRRRRRR",
 			"RRRRRRNNRRRRRRRRRNNRRRRRR",
-			"RRRRRRNNERRRRRRRENNERRRRR",
+			"RRRRRRNNERRRRRRRENNNRRRRR",
 			"RRRRERNNRERRRRRERNNNNNNNN",
 			"NNNNNNNNRERRRRRERNNRRRRRR",
 			"NNNNNNNNNNNNNNNNNNNERRRRR",
@@ -49,12 +49,12 @@ public class Board{
 			"RRRRRRRENNCCCCCCNNNNNNNNG",
 			"RRRRRRRRNNCCCCCCNNNRRERRG",
 			"RRRRRRRRNNCCCCCCNNRRRRRRR",
-			"RRRRRRERNNCCCCCCNNERRRRRR",
+			"RRRRRRERNNCCCCCCNNRRRRRRR",
 			"GNNNNNNNNNCCCCCCNNRRRRRRR",
 			"GNNNNNNNNNNNNNNNNNNRRRRRG",
 			"GNNNNNNNNRRRERRRNNNNNNNNN",
 			"RRRRRRENNRRRRRRRNNNNNNNNG",
-			"RRRRRRRNNRRRRRRENNERRRRRR",
+			"RRRRRRRNNRRRRRRENNRRRRRRR",
 			"RRRRRRRNNRRRRRRRNNRRRRRRR",
 			"RRRRRRRNNRRRRRRRNNRRRRRRR",
 			"RRRRRRRNNRRRRRRRNNRRRRRRR",
@@ -156,10 +156,10 @@ public class Board{
 		rooms.get(7).addExit(boardSpecialCells[18][6]);
 		
 		//Dining
-		boardSpecialCells[6][16] = new RoomEntranceCell(rooms.get(8), 6, 16);
-		rooms.get(8).addExit(boardSpecialCells[6][16]);
-		boardSpecialCells[8][12] = new RoomEntranceCell(rooms.get(8), 8, 12);
-		rooms.get(8).addExit(boardSpecialCells[8][12]);
+		boardSpecialCells[12][8] = new RoomEntranceCell(rooms.get(8), 12, 8);
+		rooms.get(8).addExit(boardSpecialCells[12][8]);
+		boardSpecialCells[16][6] = new RoomEntranceCell(rooms.get(8), 16, 6);
+		rooms.get(8).addExit(boardSpecialCells[16][6]);
 		
 		//Setup stair connections
 		rooms.get(0).setStairRoom(rooms.get(5));

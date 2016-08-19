@@ -100,7 +100,6 @@ public class GUI{
 	    JButton down = new JButton("Down");
 	    down.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	  System.out.println("down");
 		    	  game.moveDown();
 		      }
 	    });
@@ -272,7 +271,7 @@ class Draw extends Canvas{
 							if (boardSpecialCells[row][col] == null)
 								g2.setColor(new Color(255, 235, 100));
 							else
-								g2.setColor(new Color(0, 0, 255)); // Blue
+								g2.setColor(new Color(60, 60, 255)); // Blue
 							break;
 						case NONE:
 							g2.setColor(new Color(100, 235, 100));
@@ -301,6 +300,8 @@ class Draw extends Canvas{
 					g2.draw(new Rectangle(scale * col, scale * row, scale, scale));
 					break;
 				case NONE:
+					g2.setColor(new Color(0, 0, 0));
+					g2.draw(new Rectangle(scale * col, scale * row, scale, scale));
 					break;
 				case ROOM:
 					break;
@@ -312,6 +313,7 @@ class Draw extends Canvas{
 					break;
 				
 				}
+				
 			}
 		}
 		
