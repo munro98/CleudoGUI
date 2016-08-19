@@ -91,67 +91,9 @@ public class GUI{
 	    });
 	    
 	    JButton accuse = new JButton("Accuse");
-	    accuse.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {		    	  
-		    	  // Get data for user to select
-		    	  Object[] players = game.getPlayers().toArray();
-		    	  Object[] weapons = game.getWeapons().toArray();
-		    	  Object[] rooms = game.getRooms().toArray();
-
-		    	  // Get player inputs
-		    	  Player player = (Player)JOptionPane.showInputDialog(
-		    			  frame, 
-		    			  "Select a player to accuse of the murder",
-		    			  "Which player was the muderer?",		    			  
-		    			  JOptionPane.PLAIN_MESSAGE, null,
-		    			  players, null
-		    	  );
-
-		    	  // if the player has canceled, stop
-		    	  if(player == null){
-		    		  return;
-		    	  }
-		    	  
-		    	  Weapon weapon = (Weapon)JOptionPane.showInputDialog(
-		    			  frame, 
-		    			  "Select a murder weapon",
-		    			  "What weapon did they use?",		    			  
-		    			  JOptionPane.PLAIN_MESSAGE, null,
-		    			  weapons, null
-		    	  );
-		    	  
-		    	  // if the player has canceled, stop
-		    	  if(weapon == null){
-		    		  return;
-		    	  }
-		    	  
-		    	  Room room = (Room)JOptionPane.showInputDialog(
-		    			  frame, 
-		    			  "Select a murder weapon",
-		    			  "What weapon did they use?",		    			  
-		    			  JOptionPane.PLAIN_MESSAGE, null,
-		    			  rooms, null
-		    	  );
-		    	  
-		    	  // if the player has canceled, stop
-		    	  if(room == null){
-		    		  return;
-		    	  }
-
-		    	  // see if the player won or not
-		    	  boolean result = game.makeAccusation(player, weapon, room);
-		    	  
-		    	  // finally we now send the user a popup telling them of their result
-		    	  if(result == true){
-		    		  JOptionPane.showMessageDialog(frame, "Congratulations you won!");
-		    		  // After they close the message box, exit
-		    		  System.exit(0);
-		    	  }
-		    	  else{
-		    		  String name = game.getCurrentPlayer().getName();
-		    		  JOptionPane.showMessageDialog(frame, 
-		    				  name + "made a false accusation and promptly died of a brain aneurysm");
-		    	  }
+	    accuse.addActionListener(new ActionListener() {    	
+		      public void actionPerformed(ActionEvent e) {
+		    	  game.makeAccusation();
 		      }
 	    });
 	    
@@ -204,6 +146,10 @@ public class GUI{
 	
 	public void draw() {
 		draw.repaint();
+	}
+	
+	public void dialog(String message){
+		JOptionPane.showMessageDialog(frame, message);
 	}
 	
 	public int askPlayerCount() {

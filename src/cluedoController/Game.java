@@ -353,9 +353,9 @@ public class Game {
 			//make suggestion
 			Room room = player.getRoom();
 			
-			
-			int playerSelection = playerSelection();
-			int weaponSelection = weaponSelection();
+			//TODO
+			int playerSelection = 1;//playerSelection();
+			int weaponSelection = 1;//weaponSelection();
 
 			//System.out.println(players.get(playerSelection));
 			//System.out.println(weapons.get(weaponSelection));
@@ -391,104 +391,43 @@ public class Game {
 	
 
 
-	public boolean makeAccusation(Player player, Weapon weapon, Room room) {
-		// The person who made the accusation
+	public void makeAccusation() {
+		
 		Player accuser = selectedPlayer;
 
-		if (solution.getPlayer() == player 
+		Player player = playerSelection();
+		Weapon weapon = weaponSelection();
+		Room room = roomSelection();
+
+		// see if they got the correct solution
+		if (solution.getPlayer() == player
 				&& solution.getWeapon() == weapon
-				&& solution.getRoom() == room){
-			return true;
+				&& solution.getRoom() == room
+				) {
+			gui.dialog(accuser.getName() + " Has Won!");
+			System.exit(0);
+			return;
 		}
 		
-		// Player failed the accusation
+		// Player failed
 		alivePlayers.remove(accuser);
 		board.remove(accuser);
-		//System.out.println(accuser.getName() + " made a false accusation and promptly died of a brain aneurysm.");
-
-		return false;
+		gui.dialog(accuser.getName() + " made a false accusation and promptly died of a brain aneurysm.");
 	}
 	
-	private int playerSelection() {
-		System.out.println("Pick a player:");
-		for (int i = 0; i < players.size(); i++) {
-			System.out.println(players.get(i).getName() + "(" + i + ")");
-		}
-		int playerSelection = -1;
-		while (!(playerSelection >= 0 && playerSelection < players.size())) {
-			String inputString;
-			try {
-				inputString = input.next();
-				playerSelection = Integer.parseInt(inputString);
-			} catch (InputMismatchException e) {
-			} catch (NumberFormatException e) {
-			} finally {
-				if (!(playerSelection >= 0 && playerSelection < players.size()))
-					System.out.println("Enter a valid number:");
-			}
-		}
-		return playerSelection;
+	private Player playerSelection() {		
+		return gui.selectPlayer(players);
 	}
 	
-	private int weaponSelection() {
-		System.out.println("Pick a weapon:");
-		for (int i = 0; i < weapons.size(); i++) {
-			System.out.println(weapons.get(i).getName() + "(" + i + ")");
-		}
-		int weaponSelection = -1;
-		while (!(weaponSelection >= 0 && weaponSelection < weapons.size())) {
-			String inputString;
-			try {
-				inputString = input.next();
-				weaponSelection = Integer.parseInt(inputString);
-			} catch (InputMismatchException e) {
-			} catch (NumberFormatException e) {
-			} finally {
-				if (!(weaponSelection >= 0 && weaponSelection < weapons.size()))
-					System.out.println("Enter a valid number:");
-			}
-		}
-		return weaponSelection;
+	private Weapon weaponSelection() {
+		return gui.selectWeapon((ArrayList)weapons);
 	}
 	
-	private int roomSelection() {
-		System.out.println("Pick a weapon:");
-		for (int i = 0; i < board.getRooms().size(); i++) {
-			System.out.println(board.getRooms().get(i).getName() + "(" + i + ")");
-		}
-		int roomSelection = -1;
-		while (!(roomSelection >= 0 && roomSelection < board.getRooms().size())) {
-			String inputString;
-			try {
-				inputString = input.next();
-				roomSelection = Integer.parseInt(inputString);
-			} catch (InputMismatchException e) {
-			} catch (NumberFormatException e) {
-			} finally {
-				if (!(roomSelection >= 0 && roomSelection < board.getRooms().size()))
-					System.out.println("Enter a valid number:");
-			}
-		}
-		return roomSelection;
+	private Room roomSelection() {
+		return gui.selectRoom((ArrayList)board.getRooms());
 	}
 
 	public Board getBoard() {
 		return board;
-	}
-	
-	public Player getCurrentPlayer(){
-		return selectedPlayer;
-	}
-	
-	public List<Player> getPlayers(){
-		return this.alivePlayers;
-	}
-	
-	public List<Weapon> getWeapons(){
-		return weapons;
-	}
-	
-	public List<Room> getRooms(){
-		return board.rooms;
 	}
 }
