@@ -391,7 +391,9 @@ public class Game {
 	
 
 
-	public void makeAccusation(Player player) {
+	public void makeAccusation() {
+		
+		Player player = selectedPlayer;
 
 		//if (playerOption == 1) {
 			int playerSelection = playerSelection();
@@ -479,5 +481,16 @@ public class Game {
 	public Board getBoard() {
 		return board;
 	}
-
+	
+	public ArrayList<Player> getPlayers(){
+		return this.alivePlayers;
+	}
+	
+	public ArrayList<Weapon> getWeapons(){
+		return (ArrayList<Weapon>) weapons;
+	}
+	
+	public ArrayList<Room> getRooms(){
+		return (ArrayList<Room>) board.rooms;
+	}
 }

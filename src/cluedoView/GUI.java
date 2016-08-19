@@ -3,6 +3,7 @@ package cluedoView;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -20,6 +21,7 @@ import java.util.List;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -90,8 +92,38 @@ public class GUI{
 	    
 	    JButton accuse = new JButton("Accuse");
 	    accuse.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		    	  //TODO
+		      public void actionPerformed(ActionEvent e) {		    	  
+		    	  // Get data for user to select
+		    	  ArrayList<Player> users = game.getPlayers();
+		    	  ArrayList<Weapon> weapons = game.getWeapons();
+		    	  ArrayList<Room> rooms = game.getRooms();
+		    	  
+		    	  // now store their names in Object[] arrays to display
+		    	  Object[] userText = new Object[users.size()];
+		    	  int i = 0;
+		    	  for(Player p : users){
+		    		  userText[i] = p.toString();
+		    		  i++;
+		    	  }
+		    	  
+		    	  //inputString = JOptionPane.showInputDialog(null, "How many players? (3-6):", "How many players? (3-6):", 1);
+		    	  
+		    	  // Get player inputs
+		    	  
+		    	  try{
+		    		  //jDialog input;
+		    		  String selection = (String)JOptionPane.showInputDialog(
+		    				  null, "Select player to accuse",
+		    				  userText, 
+		    				  null, null, "test?", JOptionPane.PLAIN_MESSAGE,
+		    				  JOptionPane.DEFAULT_OPTION
+		    				  );
+		    		  
+		    	  }catch(Exception z){
+		    		  System.out.println("Failed");
+		    	  }
+		    	  
+		    	  //game.makeAccusation(accused, weapon, room);
 		      }
 	    });
 	    
@@ -331,6 +363,4 @@ class Draw extends Canvas{
 		System.out.println(" " + arg0.getX() + " " + arg0.getY());
 		
 	}
-
-
 }
