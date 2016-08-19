@@ -46,6 +46,8 @@ public class GUI{
 		this.game = game;
 	
 		frame = new JFrame("Cluedo");
+		draw = new Draw(game);
+		
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setLayout(new BorderLayout());
 	    
@@ -73,7 +75,7 @@ public class GUI{
 	    });
 	    
 	    JButton suggest = new JButton("Suggest");
-	    skip.addActionListener(new ActionListener() {
+	    suggest.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
 		    	  //TODO
 		      }
@@ -87,7 +89,7 @@ public class GUI{
 	    });
 	    
 	    JButton accuse = new JButton("Accuse");
-	    skip.addActionListener(new ActionListener() {
+	    accuse.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
 		    	  //TODO
 		      }
@@ -134,7 +136,7 @@ public class GUI{
 	    frame.add(bar, BorderLayout.NORTH);
 	    
 	    
-	    draw = new Draw(game);
+	    
 	    /*
 	    frame.addMouseListener(new MouseAdapter() {
 			public void mouseReleased(MouseEvent e) {
@@ -151,11 +153,10 @@ public class GUI{
 	    frame.pack();
 	    frame.setResizable(true);
 	    frame.setVisible(true);
-	    //redraw();
 	}
 	
 	public void draw() {
-		draw.paint(frame.getGraphics());
+		draw.repaint();
 	}
 	
 	public int askPlayerCount() {
@@ -249,6 +250,10 @@ class Draw extends Canvas{
 		return new Dimension(WIDTH, HEIGHT);
 	}
 
+	@Override
+	public void repaint() {
+		paint(this.getGraphics());
+	}
 
 	public void paint(Graphics g) {
 		Dimension size = this.getSize();
@@ -266,7 +271,7 @@ class Draw extends Canvas{
 					g2.setColor(new Color(255, 235, 200));
 					g2.fill(new Rectangle(scale * col, scale * row, scale, scale));
 					
-					g.drawString("P", scale * col, scale * col);
+					g.drawString("P"+game.getBoard().getPlayerCells()[row][col].getIndex(), scale * col, scale * col-scale);
 				} else {
 					switch(boardCells[row][col]) {
 						case HALL:
@@ -315,9 +320,7 @@ class Draw extends Canvas{
 				}
 			}
 		}
-		
-		//TODO draw players
-		
+
 		//TODO draw rooms names
 		//g.drawString(arg0, arg1, arg2);
 		

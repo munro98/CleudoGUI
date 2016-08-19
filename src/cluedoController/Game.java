@@ -300,8 +300,8 @@ public class Game {
 	}
 	
 	public void moveUp() {
-		if (board.canMoveDown(selectedPlayer)) {
-			board.moveDown(selectedPlayer);
+		if (board.canMoveUp(selectedPlayer)) {
+			board.moveUp(selectedPlayer);
 		}
 		gui.draw();
 	}
