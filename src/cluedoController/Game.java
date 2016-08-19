@@ -59,7 +59,10 @@ public class Game {
 	private Suggestion solution;
 	private Scanner input;
 	
+	private int selectedPlayerIndex;
 	private Player selectedPlayer;
+	private Random random; 
+	private int dice;
 
 	public Game() {
 		this.board = new Board();
@@ -80,7 +83,7 @@ public class Game {
 		alivePlayers = new ArrayList<Player>(activePlayers);
 
 		//Generate Solution
-		Random random = new Random();
+		random = new Random();
 		Player randomPlayer = players.get(random.nextInt(players.size()));
 		Weapon randomWeapon = weapons.get(random.nextInt(weapons.size()));
 		int roomSize = board.getRooms().size();
@@ -122,7 +125,9 @@ public class Game {
 		board.spawnPlayers(activePlayers);
 		gui.draw();
 		
-		selectedPlayer = activePlayers.get(0);
+		selectedPlayerIndex = 0;
+		selectedPlayer = activePlayers.get(selectedPlayerIndex);
+		dice = random.nextInt(6) + 1;
 		//Player selected = gui.selectPlayer(players);
 		//System.out.println(selected.getName());
 		
@@ -299,11 +304,25 @@ public class Game {
 		
 	}
 	
+	public void finnishTurn() {
+		if (dice == 0) {
+			selectedPlayerIndex++;
+			if (selectedPlayerIndex >= alivePlayers.size()) {
+				selectedPlayerIndex = 0;
+			}
+			selectedPlayer = alivePlayers.get(selectedPlayerIndex);
+			dice = random.nextInt(6) + 1;
+		} else {
+			dice--;
+		}
+	}
+	
 	public void moveUp() {
 		if (board.canMoveUp(selectedPlayer)) {
 			board.moveUp(selectedPlayer);
 		}
 		gui.draw();
+		finnishTurn();
 	}
 	
 	public void moveDown() {
@@ -311,6 +330,7 @@ public class Game {
 			board.moveDown(selectedPlayer);
 		}
 		gui.draw();
+		finnishTurn();
 	}
 	
 	public void moveLeft() {
@@ -318,6 +338,7 @@ public class Game {
 			board.moveLeft(selectedPlayer);
 		}
 		gui.draw();
+		finnishTurn();
 	}
 	
 	public void moveRight() {
@@ -325,6 +346,7 @@ public class Game {
 			board.moveRight(selectedPlayer);
 		}
 		gui.draw();
+		finnishTurn();
 	}
 	
 	public void makeSuggestion(Player player) {
@@ -413,6 +435,9 @@ public class Game {
 		alivePlayers.remove(accuser);
 		board.remove(accuser);
 		gui.dialog(accuser.getName() + " made a false accusation and promptly died of a brain aneurysm.");
+		
+		dice = 0;
+		finnishTurn();
 	}
 	
 	private Player playerSelection() {		
