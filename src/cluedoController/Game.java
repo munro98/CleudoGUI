@@ -25,7 +25,7 @@ public class Game {
 	 
 	JavaDoc comment eveywhere
 	add MouseListener on canvas
-	Display players cards
+	draw cards
 	
 	• JTextField. These should be used to allow each player to enter their name.
 	
@@ -39,7 +39,7 @@ public class Game {
 	animated to perform different actions when different events happen to them (e.g. when going
 	through a secret passage).
 	
-	draw players in rooms
+	draw players in the rooms
 	draw room names
 	clean up board A E S T H I C S
 	 */

@@ -255,6 +255,9 @@ class Draw extends Canvas{
 		Graphics2D g2 = (Graphics2D) g;
 		Cell[][] boardCells = game.getBoard().getBoardCells();
 		RoomEntranceCell[][] boardSpecialCells = game.getBoard().getBoardEntranceCells();
+		
+		g2.setColor(new Color(0, 0, 0));
+		g2.draw(new Rectangle(0, 0, scale * Board.SIZE, scale * Board.SIZE));
 
 		for (int row = 0; row < Board.SIZE; row++){
 			for (int col = 0; col < Board.SIZE; col++){

@@ -39,10 +39,10 @@ public class Board{
 			"RRRRRRNNRRRRRRRRRNNRRRRRR",
 			"RRRRRRNNRRRRRRRRRNNRRRRRR",
 			"RRRRRRNNRRRRRRRRRNNRRRRRR",
-			"RRRRRRNNERRRRRRRENNNRRRRR",
+			"RRRRRRNNRRRRRRRRENNNRRRRR",
 			"RRRRERNNRERRRRRERNNNNNNNN",
 			"NNNNNNNNRERRRRRERNNRRRRRR",
-			"NNNNNNNNNNNNNNNNNNNERRRRR",
+			"NNNNNNNNNNNNNNNNNNNRRRRRR",
 			"RRRRRNNNNNNNNNNNNNNRRRRRR",
 			"RRRRRRRRNNCCCCCCNNNRRRRRR",
 			"RRRRRRRRNNCCCCCCNNNRRRRER",
@@ -51,14 +51,14 @@ public class Board{
 			"RRRRRRRRNNCCCCCCNNRRRRRRR",
 			"RRRRRRERNNCCCCCCNNRRRRRRR",
 			"GNNNNNNNNNCCCCCCNNRRRRRRR",
-			"GNNNNNNNNNNNNNNNNNNRRRRRG",
+			"NNNNNNNNNNNNNNNNNNNRRRRRG",
 			"GNNNNNNNNRRRERRRNNNNNNNNN",
-			"RRRRRRENNRRRRRRRNNNNNNNNG",
-			"RRRRRRRNNRRRRRRENNRRRRRRR",
+			"RRRRRRENNRRRRRRRNNNNNNNNN",
+			"RRRRRRRNNRRRRRRENNNNNNNNN",
 			"RRRRRRRNNRRRRRRRNNRRRRRRR",
 			"RRRRRRRNNRRRRRRRNNRRRRRRR",
 			"RRRRRRRNNRRRRRRRNNRRRRRRR",
-			"RRRRRRGGGRRRRRRRGNGRRRRRR"};
+			"RRRRRRGNGRRRRRRRGNGRRRRRR"};
 	
 	
 	public Board() {
@@ -139,13 +139,13 @@ public class Board{
 		boardSpecialCells[12][23] = new RoomEntranceCell(rooms.get(3), 12, 23);
 		rooms.get(3).addExit(boardSpecialCells[12][23]);
 		//Library
-		boardSpecialCells[16][16] = new RoomEntranceCell(rooms.get(4), 16, 16);
-		rooms.get(4).addExit(boardSpecialCells[16][16]);
 		boardSpecialCells[12][21] = new RoomEntranceCell(rooms.get(4), 12, 21);
 		rooms.get(4).addExit(boardSpecialCells[12][21]);
+		boardSpecialCells[15][17] = new RoomEntranceCell(rooms.get(4), 15, 17);
+		rooms.get(4).addExit(boardSpecialCells[15][17]);
 		//Study
-		boardSpecialCells[19][18] = new RoomEntranceCell(rooms.get(5), 19, 18);
-		rooms.get(5).addExit(boardSpecialCells[19][18]);
+		boardSpecialCells[20][18] = new RoomEntranceCell(rooms.get(5), 20, 18);
+		rooms.get(5).addExit(boardSpecialCells[20][18]);
 		//Hall
 		boardSpecialCells[17][12] = new RoomEntranceCell(rooms.get(6), 17, 12);
 		rooms.get(6).addExit(boardSpecialCells[17][12]);
@@ -160,7 +160,6 @@ public class Board{
 		rooms.get(8).addExit(boardSpecialCells[12][8]);
 		boardSpecialCells[16][6] = new RoomEntranceCell(rooms.get(8), 16, 6);
 		rooms.get(8).addExit(boardSpecialCells[16][6]);
-		
 		//Setup stair connections
 		rooms.get(0).setStairRoom(rooms.get(5));
 		rooms.get(5).setStairRoom(rooms.get(0));
