@@ -130,26 +130,13 @@ public class GUI{
 	    
 	    frame.add(controls, BorderLayout.SOUTH);
 	    
-	    
 	    menu.add(newGame);
 	    menu.add(quit);
 	    frame.add(bar, BorderLayout.NORTH);
-	    
-	    
-	    
-	    /*
-	    frame.addMouseListener(new MouseAdapter() {
-			public void mouseReleased(MouseEvent e) {
-				onClick(e);
-				redraw();
-			}
 
-		});
-		*/
 	    frame.add(draw, BorderLayout.CENTER);
 	    
-	    //createGameComponent(frame);
-	    //createActionBar(frame);
+
 	    frame.pack();
 	    frame.setResizable(true);
 	    frame.setVisible(true);
@@ -271,20 +258,21 @@ class Draw extends Canvas{
 					g2.setColor(new Color(255, 235, 200));
 					g2.fill(new Rectangle(scale * col, scale * row, scale, scale));
 					
-					g.drawString("P"+game.getBoard().getPlayerCells()[row][col].getIndex(), scale * col, scale * col-scale);
+					g2.setColor(new Color(0, 0, 0));
+					g2.drawString("P"+game.getBoard().getPlayerCells()[row][col].getIndex(), scale * col, scale * row);
 				} else {
 					switch(boardCells[row][col]) {
 						case HALL:
 							if (boardSpecialCells[row][col] == null)
 								g2.setColor(new Color(255, 235, 100));
 							else
-								g2.setColor(new Color(0, 0, 255));
+								g2.setColor(new Color(0, 0, 255)); // Blue
 							break;
 						case NONE:
 							g2.setColor(new Color(100, 235, 100));
 							break;
 						case ROOM:
-							g2.setColor(new Color(255, 255, 255));
+							g2.setColor(new Color(255, 255, 255)); // White
 							break;
 						case STAIR:
 							break;
