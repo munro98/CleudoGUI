@@ -116,6 +116,8 @@ public class Game {
 		
 		board.spawnPlayers(activePlayers);
 		
+		//Player selected = gui.selectPlayer(players);
+		//System.out.println(selected.getName());
 		
 		/*
 

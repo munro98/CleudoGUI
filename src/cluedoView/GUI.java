@@ -13,19 +13,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 import cluedoController.Game;
 import cluedoModel.Board;
 import cluedoModel.RoomEntranceCell;
+import cluedoModel.Weapon;
 import cluedoModel.Board.Cell;
+import cluedoModel.Player;
+import cluedoModel.Room;
 
 public class GUI{
 
@@ -155,6 +164,66 @@ public class GUI{
 			}
 		}
 		return playerCount;
+	}
+	
+	public Player selectPlayer(ArrayList<Player> players) {
+		
+		ButtonGroup group = new ButtonGroup();
+	    List<JRadioButton> buttons = new ArrayList<JRadioButton>();
+	    for (Player player : players) {
+	    	
+	      JRadioButton button = new JRadioButton(player.getName());
+	      button.setActionCommand(player.getName());
+	      buttons.add(button);
+	      group.add(button);
+	    }
+	    
+	    buttons.get(0).setSelected(true);
+	    JComponent[] inputs = new JComponent[buttons.size()];
+	    buttons.toArray(inputs);
+	    JOptionPane.showMessageDialog(null, inputs, "Select Player", JOptionPane.PLAIN_MESSAGE);
+		
+		return players.get(group.getSelection().getMnemonic());
+	}
+	
+	public Weapon selectWeapon(ArrayList<Weapon> weapons) {
+		
+		ButtonGroup group = new ButtonGroup();
+	    List<JRadioButton> buttons = new ArrayList<JRadioButton>();
+	    for (Weapon weapon : weapons) {
+	    	
+	      JRadioButton button = new JRadioButton(weapon.getName());
+	      button.setActionCommand(weapon.getName());
+	      buttons.add(button);
+	      group.add(button);
+	    }
+	    
+	    buttons.get(0).setSelected(true);
+	    JComponent[] inputs = new JComponent[buttons.size()];
+	    buttons.toArray(inputs);
+	    JOptionPane.showMessageDialog(null, inputs, "Select Player", JOptionPane.PLAIN_MESSAGE);
+		
+		return weapons.get(group.getSelection().getMnemonic());
+	}
+	
+	public Room selectRoom(ArrayList<Room> rooms) {
+		
+		ButtonGroup group = new ButtonGroup();
+	    List<JRadioButton> buttons = new ArrayList<JRadioButton>();
+	    for (Room room : rooms) {
+	    	
+	      JRadioButton button = new JRadioButton(room.getName());
+	      button.setActionCommand(room.getName());
+	      buttons.add(button);
+	      group.add(button);
+	    }
+	    
+	    buttons.get(0).setSelected(true);
+	    JComponent[] inputs = new JComponent[buttons.size()];
+	    buttons.toArray(inputs);
+	    JOptionPane.showMessageDialog(null, inputs, "Select Player", JOptionPane.PLAIN_MESSAGE);
+		
+		return rooms.get(group.getSelection().getMnemonic());
 	}
 }
 
