@@ -59,9 +59,14 @@ public class Game {
 	public Game() {
 		this.isRunning = true;
 		this.board = new Board();
-		GUI graphics = new GUI(this);// testing code
 		
+		GUI gui = new GUI(this);// testing code
 		
+		//Get playerCount
+		int playerCount = gui.askPlayerCount();
+		
+		System.out.println(playerCount);
+		System.out.println("new Game!");
 		
 		/*
 		//players = new ArrayList<Player>();
@@ -83,7 +88,7 @@ public class Game {
 			}
 		}
 		//playerCount = 2;
-		System.out.println("new Game!");
+		
 		
 		activePlayers = new ArrayList<Player>();
 		for (int i = 0; i < playerCount; i++)

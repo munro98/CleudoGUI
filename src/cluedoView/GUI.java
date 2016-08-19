@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import cluedoController.Game;
@@ -141,6 +142,19 @@ public class GUI{
 	    frame.setResizable(true);
 	    frame.setVisible(true);
 	    //redraw();
+	}
+	
+	public int askPlayerCount() {
+		int playerCount = -1;
+		while (!(playerCount > 2 && playerCount < 7)) {
+			String inputString;
+			try {
+				inputString = JOptionPane.showInputDialog(null, "How many players? (3-6):", "How many players? (3-6):", 1);
+				playerCount = Integer.parseInt(inputString);
+			} catch (NumberFormatException e) {
+			}
+		}
+		return playerCount;
 	}
 }
 
