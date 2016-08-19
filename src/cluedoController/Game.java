@@ -68,28 +68,6 @@ public class Game {
 		System.out.println(playerCount);
 		System.out.println("new Game!");
 		
-		/*
-		//players = new ArrayList<Player>();
-		input = new Scanner(System.in);
-		
-		//Get playerCount
-		int playerCount = -1;
-		while (!(playerCount > 2 && playerCount < 7)) {
-			System.out.println("How many players? (3-6):");
-			String inputString;
-			try {
-				inputString = input.next();
-				playerCount = Integer.parseInt(inputString);
-			} catch (InputMismatchException e) {
-			} catch (NumberFormatException e) {
-			} finally {
-				if (!(playerCount > 2 && playerCount < 7))
-					System.out.println("Enter a valid number:");
-			}
-		}
-		//playerCount = 2;
-		
-		
 		activePlayers = new ArrayList<Player>();
 		for (int i = 0; i < playerCount; i++)
 			activePlayers.add(players.get(i));
@@ -138,6 +116,9 @@ public class Game {
 		
 		board.spawnPlayers(activePlayers);
 		
+		
+		/*
+
 		//while (this.isRunning) {
 		while (this.isRunning && alivePlayers.size() > 1) {
 			for (int j = 0; j < alivePlayers.size(); j++) {
