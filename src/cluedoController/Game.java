@@ -20,10 +20,7 @@ import cluedoModel.Weapon;
 import cluedoView.GUI;
 
 public class Game {
-	private Board board;
-	private Suggestion solution;
-	private Scanner input;
-	private boolean isRunning;
+	
 	
 	/*TODO
 	 * Improve board drawing
@@ -55,12 +52,19 @@ public class Game {
 	
 	private ArrayList<Player> activePlayers;
 	private ArrayList<Player> alivePlayers;
+	
+	
+	private Board board;
+	private GUI gui;
+	private Suggestion solution;
+	private Scanner input;
+	
+	private Player selectedPlayer;
 
 	public Game() {
-		this.isRunning = true;
 		this.board = new Board();
 		
-		GUI gui = new GUI(this);// testing code
+		gui = new GUI(this);// testing code
 		
 		//Get playerCount
 		//int playerCount = gui.askPlayerCount();
@@ -118,6 +122,7 @@ public class Game {
 		board.spawnPlayers(activePlayers);
 		gui.draw();
 		
+		selectedPlayer = activePlayers.get(0);
 		//Player selected = gui.selectPlayer(players);
 		//System.out.println(selected.getName());
 		
@@ -294,6 +299,34 @@ public class Game {
 		
 	}
 	
+	public void moveUp() {
+		if (board.canMoveDown(selectedPlayer)) {
+			board.moveDown(selectedPlayer);
+		}
+		gui.draw();
+	}
+	
+	public void moveDown() {
+		if (board.canMoveDown(selectedPlayer)) {
+			board.moveDown(selectedPlayer);
+		}
+		gui.draw();
+	}
+	
+	public void moveLeft() {
+		if (board.canMoveLeft(selectedPlayer)) {
+			board.moveLeft(selectedPlayer);
+		}
+		gui.draw();
+	}
+	
+	public void moveRight() {
+		if (board.canMoveRight(selectedPlayer)) {
+			board.moveRight(selectedPlayer);
+		}
+		gui.draw();
+	}
+	
 	public void makeSuggestion(Player player) {
 		System.out.println("Would you like to make a suggestion?(y/n):");
 		int playerOption = -1;
@@ -370,7 +403,6 @@ public class Game {
 					&& solution.getRoom() == board.getRooms().get(roomSelection)
 					) {
 				System.out.println(player.getName() + " Has Won!");
-				this.isRunning = false;
 				System.exit(0);
 				return;
 			}

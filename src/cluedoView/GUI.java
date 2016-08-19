@@ -80,9 +80,9 @@ public class GUI{
 	    });
 	    
 	    JButton up = new JButton("Up");
-	    skip.addActionListener(new ActionListener() {
+	    up.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	  //TODO
+		    	  game.moveUp();
 		      }
 	    });
 	    
@@ -94,23 +94,24 @@ public class GUI{
 	    });
 	    
 	    JButton down = new JButton("Down");
-	    skip.addActionListener(new ActionListener() {
+	    down.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	  //TODO
+		    	  System.out.println("down");
+		    	  game.moveDown();
 		      }
 	    });
 	    
 	    JButton left = new JButton("Left");
-	    skip.addActionListener(new ActionListener() {
+	    left.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	  //TODO
+		    	  game.moveLeft();
 		      }
 	    });
 	    
 	    JButton right = new JButton("Right");
-	    skip.addActionListener(new ActionListener() {
+	    right.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	  //TODO
+		    	  game.moveRight();
 		      }
 	    });
 	    
