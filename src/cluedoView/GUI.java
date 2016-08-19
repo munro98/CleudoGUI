@@ -94,43 +94,64 @@ public class GUI{
 	    accuse.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {		    	  
 		    	  // Get data for user to select
-		    	  ArrayList<Player> users = game.getPlayers();
-		    	  ArrayList<Weapon> weapons = game.getWeapons();
-		    	  ArrayList<Room> rooms = game.getRooms();
-		    	  
-		    	  // now store their names in Object[] arrays to display
-		    	  /*Object[] userText = new Object[users.size()];
-		    	  int i = 0;
-		    	  for(Player p : users){
-		    		  userText[i] = p.toString();
-		    		  i++;
-		    	  }
-		    	  */
-		    	  Object[] userText = {"1", "2", "3"};
-		    	  
-		    	  //inputString = JOptionPane.showInputDialog(null, "How many players? (3-6):", "How many players? (3-6):", 1);
-		    	  
+		    	  Object[] players = game.getPlayers().toArray();
+		    	  Object[] weapons = game.getWeapons().toArray();
+		    	  Object[] rooms = game.getRooms().toArray();
+
 		    	  // Get player inputs
-		    	  
-		    	  try{
-		    		  //jDialog input;
-		    		  String s = (String)JOptionPane.showInputDialog(
-		    				  frame, 
-		    				  "Select player to accuse",
-		    				  "test",
-		    				  JOptionPane.PLAIN_MESSAGE,
-		    				  null,
-		    				  userText,
-		    				  "1"
-		    				  );
-		    		  
-		    		  System.out.println(s);
-		    		  
-		    	  }catch(Exception z){
-		    		  System.out.println("Failed");
+		    	  Player player = (Player)JOptionPane.showInputDialog(
+		    			  frame, 
+		    			  "Select a player to accuse of the murder",
+		    			  "Which player was the muderer?",		    			  
+		    			  JOptionPane.PLAIN_MESSAGE, null,
+		    			  players, null
+		    	  );
+
+		    	  // if the player has canceled, stop
+		    	  if(player == null){
+		    		  return;
 		    	  }
 		    	  
-		    	  //game.makeAccusation(accused, weapon, room);
+		    	  Weapon weapon = (Weapon)JOptionPane.showInputDialog(
+		    			  frame, 
+		    			  "Select a murder weapon",
+		    			  "What weapon did they use?",		    			  
+		    			  JOptionPane.PLAIN_MESSAGE, null,
+		    			  weapons, null
+		    	  );
+		    	  
+		    	  // if the player has canceled, stop
+		    	  if(weapon == null){
+		    		  return;
+		    	  }
+		    	  
+		    	  Room room = (Room)JOptionPane.showInputDialog(
+		    			  frame, 
+		    			  "Select a murder weapon",
+		    			  "What weapon did they use?",		    			  
+		    			  JOptionPane.PLAIN_MESSAGE, null,
+		    			  rooms, null
+		    	  );
+		    	  
+		    	  // if the player has canceled, stop
+		    	  if(room == null){
+		    		  return;
+		    	  }
+
+		    	  // see if the player won or not
+		    	  boolean result = game.makeAccusation(player, weapon, room);
+		    	  
+		    	  // finally we now send the user a popup telling them of their result
+		    	  if(result == true){
+		    		  JOptionPane.showMessageDialog(frame, "Congratulations you won!");
+		    		  // After they close the message box, exit
+		    		  System.exit(0);
+		    	  }
+		    	  else{
+		    		  String name = game.getCurrentPlayer().getName();
+		    		  JOptionPane.showMessageDialog(frame, 
+		    				  name + "made a false accusation and promptly died of a brain aneurysm");
+		    	  }
 		      }
 	    });
 	    

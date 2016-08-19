@@ -391,28 +391,22 @@ public class Game {
 	
 
 
-	public void makeAccusation() {
-		
-		Player player = selectedPlayer;
+	public boolean makeAccusation(Player player, Weapon weapon, Room room) {
+		// The person who made the accusation
+		Player accuser = selectedPlayer;
 
-		//if (playerOption == 1) {
-			int playerSelection = playerSelection();
-			int weaponSelection = weaponSelection();
-			int roomSelection = roomSelection();
-			
-			if (solution.getPlayer() == players.get(playerSelection) 
-					&& solution.getWeapon() == weapons.get(weaponSelection)
-					&& solution.getRoom() == board.getRooms().get(roomSelection)
-					) {
-				System.out.println(player.getName() + " Has Won!");
-				System.exit(0);
-				return;
-			}
-			alivePlayers.remove(player);
-			board.remove(player);
-			System.out.println(player.getName() + " made a false accusation and promptly died of a brain aneurysm.");
-		//}
+		if (solution.getPlayer() == player 
+				&& solution.getWeapon() == weapon
+				&& solution.getRoom() == room){
+			return true;
+		}
 		
+		// Player failed the accusation
+		alivePlayers.remove(accuser);
+		board.remove(accuser);
+		//System.out.println(accuser.getName() + " made a false accusation and promptly died of a brain aneurysm.");
+
+		return false;
 	}
 	
 	private int playerSelection() {
@@ -482,15 +476,19 @@ public class Game {
 		return board;
 	}
 	
-	public ArrayList<Player> getPlayers(){
+	public Player getCurrentPlayer(){
+		return selectedPlayer;
+	}
+	
+	public List<Player> getPlayers(){
 		return this.alivePlayers;
 	}
 	
-	public ArrayList<Weapon> getWeapons(){
-		return (ArrayList<Weapon>) weapons;
+	public List<Weapon> getWeapons(){
+		return weapons;
 	}
 	
-	public ArrayList<Room> getRooms(){
-		return (ArrayList<Room>) board.rooms;
+	public List<Room> getRooms(){
+		return board.rooms;
 	}
 }
