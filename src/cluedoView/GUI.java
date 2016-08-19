@@ -99,12 +99,14 @@ public class GUI{
 		    	  ArrayList<Room> rooms = game.getRooms();
 		    	  
 		    	  // now store their names in Object[] arrays to display
-		    	  Object[] userText = new Object[users.size()];
+		    	  /*Object[] userText = new Object[users.size()];
 		    	  int i = 0;
 		    	  for(Player p : users){
 		    		  userText[i] = p.toString();
 		    		  i++;
 		    	  }
+		    	  */
+		    	  Object[] userText = {"1", "2", "3"};
 		    	  
 		    	  //inputString = JOptionPane.showInputDialog(null, "How many players? (3-6):", "How many players? (3-6):", 1);
 		    	  
@@ -112,12 +114,17 @@ public class GUI{
 		    	  
 		    	  try{
 		    		  //jDialog input;
-		    		  String selection = (String)JOptionPane.showInputDialog(
-		    				  null, "Select player to accuse",
-		    				  userText, 
-		    				  null, null, "test?", JOptionPane.PLAIN_MESSAGE,
-		    				  JOptionPane.DEFAULT_OPTION
+		    		  String s = (String)JOptionPane.showInputDialog(
+		    				  frame, 
+		    				  "Select player to accuse",
+		    				  "test",
+		    				  JOptionPane.PLAIN_MESSAGE,
+		    				  null,
+		    				  userText,
+		    				  "1"
 		    				  );
+		    		  
+		    		  System.out.println(s);
 		    		  
 		    	  }catch(Exception z){
 		    		  System.out.println("Failed");
