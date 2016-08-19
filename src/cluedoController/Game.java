@@ -21,12 +21,29 @@ import cluedoView.GUI;
 
 public class Game {
 	
+	/*
+	 
+	JavaDoc comment eveywhere
+	add MouseListener on canvas
+	Display players cards
 	
-	/*TODO
-	 * Improve board drawing
-	 * Add button events that call methods in game
-	 * Split out constructor into methods
+	• JTextField. These should be used to allow each player to enter their name.
+	
+	• Short-Cut Keys. Modern GUIs provide short-cut keys enabling experienced users to operate
+	the program more efficient. For example, a short-cut key could be used to start the next turn,
+	and to access menu items. A KeyListener is needed to implement this.
+	
+	• Animations. Providing an animation of certain events in the game will make it more fun. For
+	example, when a player’s token is being moved to another square, you might animate the motion
+	rather than moving it there immediately. Similarly, you could have the tokens themselves be
+	animated to perform different actions when different events happen to them (e.g. when going
+	through a secret passage).
+	
+	draw players in rooms
+	draw room names
+	clean up board A E S T H I C S
 	 */
+
 	public enum Option {UP, LEFT, DOWN, RIGHT, ENTER, EXIT, STAIR, END, ACCUSATION}
 
 	public static final List<Weapon> weapons = new ArrayList<Weapon>();
@@ -67,7 +84,7 @@ public class Game {
 	public Game() {
 		this.board = new Board();
 		
-		gui = new GUI(this);// testing code
+		gui = new GUI(this);
 		
 		//Get playerCount
 		//int playerCount = gui.askPlayerCount();
@@ -128,8 +145,6 @@ public class Game {
 		selectedPlayerIndex = 0;
 		selectedPlayer = activePlayers.get(selectedPlayerIndex);
 		dice = random.nextInt(6) + 1;
-		//Player selected = gui.selectPlayer(players);
-		//System.out.println(selected.getName());
 		
 		/*
 
@@ -320,33 +335,67 @@ public class Game {
 	public void moveUp() {
 		if (board.canMoveUp(selectedPlayer)) {
 			board.moveUp(selectedPlayer);
+			gui.draw();
+			endTurn();
 		}
-		gui.draw();
-		endTurn();
 	}
 	
 	public void moveDown() {
 		if (board.canMoveDown(selectedPlayer)) {
 			board.moveDown(selectedPlayer);
+			gui.draw();
+			endTurn();
 		}
-		gui.draw();
-		endTurn();
 	}
 	
 	public void moveLeft() {
 		if (board.canMoveLeft(selectedPlayer)) {
 			board.moveLeft(selectedPlayer);
+			gui.draw();
+			endTurn();
 		}
-		gui.draw();
-		endTurn();
 	}
 	
 	public void moveRight() {
 		if (board.canMoveRight(selectedPlayer)) {
 			board.moveRight(selectedPlayer);
+			gui.draw();
+			endTurn();
 		}
-		gui.draw();
+		
+	}
+	
+	public void enterRoom() {
+		if (board.canEnterRoom(selectedPlayer)) {
+			board.enterRoom(selectedPlayer);
+			gui.draw();
+			endTurn();
+		}
+		
+	}
+	
+	public void exitRoom() {
+		if (selectedPlayer.getRoom() != null) {
+			board.exitRoom(selectedPlayer);
+			gui.draw();
+			endTurn();
+		}
+		
+	}
+	
+	public void enterStair() {
+		if (board.canEnterStair(selectedPlayer)) {
+			board.enterStair(selectedPlayer);
+			gui.draw();
+			endTurn();
+		}
+		
+	}
+	
+	public void skipTurn() {
+		dice = 0;
 		endTurn();
+		
 	}
 	
 	public void makeSuggestion(Player player) {
@@ -460,5 +509,9 @@ public class Game {
 
 	public Board getBoard() {
 		return board;
+	}
+
+	public int getDice() {
+		return dice;
 	}
 }

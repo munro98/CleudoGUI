@@ -314,7 +314,8 @@ class Draw extends Canvas{
 				}
 			}
 		}
-
+		
+		g2.drawString("Moves left: " + game.getDice(), 10, 15);
 		//TODO draw rooms names
 		//g.drawString(arg0, arg1, arg2);
 		
