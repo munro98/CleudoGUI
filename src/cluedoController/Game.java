@@ -239,70 +239,45 @@ public class Game {
 		
 	}
 	
-	public void makeSuggestion(Player player) {
-		System.out.println("Would you like to make a suggestion?(y/n):");
-		int playerOption = -1;
-		while (playerOption != 1 && playerOption != 2) {
-			String inputString;
-			try {
-				inputString = input.next();
-				//System.out.println(inputString);
-				if (inputString.toLowerCase().charAt(0) == 'y') {
-					playerOption = 1;
-				} else if (inputString.toLowerCase().charAt(0) == 'n') {
-					playerOption = 2;
-				}
-			} catch (InputMismatchException e) {
-			} catch (NumberFormatException e) {
-			} finally {
-				if (playerOption != 1 && playerOption != 2)
-					System.out.println("Enter a valid choice:");
+	
+	public void makeSuggestion() {
+			Room room = selectedPlayer.getRoom();
+			if (room == null) {
+				gui.dialog("You must be in a room to do that!");
+				return;
 			}
-		}
-		
-		if (playerOption == 1) {
-			
-			//make suggestion
-			Room room = player.getRoom();
-			
 			//TODO
-			int playerSelection = 1;//playerSelection();
-			int weaponSelection = 1;//weaponSelection();
+			Player playerSelection = gui.selectPlayer(players);
+			Weapon weaponSelection = gui.selectWeapon(weapons);
 
-			//System.out.println(players.get(playerSelection));
-			//System.out.println(weapons.get(weaponSelection));
-			
-			//Suggestion suggestion = new Suggestion(players.get(playerSelection), weapons.get(weaponSelection), room);
-			
 			for (Player p : activePlayers) {
 				if (p.canRefute(room)) {
 					System.out.println(p.getName() + " Can refute the murder room");
+					gui.dialog(p.getName() + " Can refute the murder room");
 					return;
 				}
 			}
 			
 			for (Player p : activePlayers) {
-				if (p.canRefute(players.get(playerSelection))) {
+				if (p.canRefute(playerSelection)) {
 					System.out.println(p.getName() + " Can refute the murderer");
+					gui.dialog(p.getName() + " Can refute the murderer");
 					return;
 				}
 			}
 			
 			for (Player p : activePlayers) {
-				if (p.canRefute(weapons.get(weaponSelection))) {
+				if (p.canRefute(weaponSelection)) {
 					System.out.println(p.getName() + " Can refute the murder weapon");
+					gui.dialog(p.getName() + " Can refute the murder weapon");
 					return;
 				}
 			}
-			
+			gui.dialog("Suggestion cannot be refuted.");
 			System.out.println("Suggestion cannot be refuted.");
-			
-		}
 		
 	}
 	
-
-
 	public void makeAccusation() {
 		
 		Player accuser = selectedPlayer;
@@ -331,7 +306,6 @@ public class Game {
 			gui.dialog("ALl players failed to find the killer.\nGAME OVER!");
 			System.exit(0);
 		}
-		
 		dice = 0;
 		endTurn();
 	}

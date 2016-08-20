@@ -6,26 +6,35 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferStrategy;
 
 import cluedoController.Game;
 import cluedoModel.Board;
 import cluedoModel.RoomEntranceCell;
 import cluedoModel.Board.Cell;
 
-class CleudoCanvas extends Canvas implements MouseListener{
+class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;
 
 	private Game game;
 	private int scale;
+	BufferStrategy bufferStrategy;
 			
 	public CleudoCanvas(Game game) {
+		super();
+		
 		this.game = game;
 		this.setBackground(new Color(255, 255, 255));
+
+		bufferStrategy = null;
 		
 		addMouseListener(this);
+		addKeyListener(this);
 	}
 
 
@@ -37,9 +46,23 @@ class CleudoCanvas extends Canvas implements MouseListener{
 	@Override
 	public void repaint() {
 		paint(this.getGraphics());
+		if (bufferStrategy == null) {
+			createBufferStrategy(3);
+			bufferStrategy = getBufferStrategy();
+		}
 	}
 
+	@Override
 	public void paint(Graphics g) {
+		
+		Graphics graphics = null;
+		if (bufferStrategy != null) {
+			graphics = bufferStrategy.getDrawGraphics();
+			g = graphics;
+		}
+		
+		
+		
 		Dimension size = this.getSize();
 		double minDimension = Math.min(size.getWidth(), size.getHeight());
 		scale = (int) (minDimension / Board.SIZE);
@@ -114,8 +137,14 @@ class CleudoCanvas extends Canvas implements MouseListener{
 		
 		g2.drawString("Moves left: " + game.getDice(), 10, 15);
 		
+		if (graphics != null) {
+			graphics.dispose();
+			bufferStrategy.show();
+		}
+		
 	}
 
+	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		int row = arg0.getY() / scale;
 		int col = arg0.getX() / scale;
@@ -145,6 +174,54 @@ class CleudoCanvas extends Canvas implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
+
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent e) {
+		switch(e.getKeyCode()) {
+		case KeyEvent.VK_Q: {
+			break;
+		}
+		case KeyEvent.VK_W: {
+			game.moveUp();
+			break;
+		}
+		case KeyEvent.VK_E: {
+			break;
+		}
+		case KeyEvent.VK_A: {
+			game.moveLeft();
+			break;
+		}
+		case KeyEvent.VK_S: {
+			game.moveDown();
+			break;
+		}
+		case KeyEvent.VK_D: {
+			game.moveRight();
+			break;
+		}
+		case KeyEvent.VK_Z: {
+			game.makeSuggestion();
+			break;
+		}
+		case KeyEvent.VK_X: {
+			break;
+		}
+		case KeyEvent.VK_C: {
+			break;
+		}
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
 
 	}
 }

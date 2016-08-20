@@ -1,17 +1,11 @@
 package cluedoView;
 
 import java.awt.BorderLayout;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,12 +21,9 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import cluedoController.Game;
-import cluedoModel.Board;
-import cluedoModel.RoomEntranceCell;
-import cluedoModel.Weapon;
-import cluedoModel.Board.Cell;
 import cluedoModel.Player;
 import cluedoModel.Room;
+import cluedoModel.Weapon;
 
 public class GUI{
 
@@ -55,80 +46,91 @@ public class GUI{
 	    
 	    JMenuItem newGame = new JMenuItem("New Game");
 	    newGame.addActionListener(new ActionListener() {  
-	    	public void actionPerformed(ActionEvent arg0) {
+	    	@Override
+			public void actionPerformed(ActionEvent arg0) {
 	    		//TODO
 	    }});
 	    
 	    JMenuItem quit = new JMenuItem("Quit");
 	    quit.addActionListener(new ActionListener() {  
-	    	public void actionPerformed(ActionEvent arg0) {
+	    	@Override
+			public void actionPerformed(ActionEvent arg0) {
 	      System.exit(0);
 	    }});
 	    
 	    JButton enterRoom = new JButton("Enter/Exit Room(Q)");
 	    enterRoom.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
+		      @Override
+			public void actionPerformed(ActionEvent e) {
 		    	  //TODO
 		      }
 	    });
 	    
 	    JButton up = new JButton("Up(W)");
 	    up.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
+		      @Override
+			public void actionPerformed(ActionEvent e) {
 		    	  game.moveUp();
 		      }
 	    });
 	    
 	    JButton enterStair = new JButton("Enter Stair(E)");
 	    enterStair.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
+		      @Override
+			public void actionPerformed(ActionEvent e) {
 		    	  //TODO
 		      }
 	    });
 	    
 	    JButton down = new JButton("Down(S)");
 	    down.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
+		      @Override
+			public void actionPerformed(ActionEvent e) {
 		    	  game.moveDown();
 		      }
 	    });
 	    
 	    JButton left = new JButton("Left(A)");
 	    left.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
+		      @Override
+			public void actionPerformed(ActionEvent e) {
 		    	  game.moveLeft();
 		      }
 	    });
 	    
 	    JButton right = new JButton("Right(D)");
 	    right.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
+		      @Override
+			public void actionPerformed(ActionEvent e) {
 		    	  game.moveRight();
 		      }
 	    });
 	    
 	    JButton suggest = new JButton("Suggest(Z)");
 	    suggest.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		    	  //TODO
+		      @Override
+			public void actionPerformed(ActionEvent e) {
+		    	  game.makeSuggestion();
 		      }
 	    });
 	    
 	    JButton accuse = new JButton("Accuse(X)");
 	    accuse.addActionListener(new ActionListener() {    	
-		      public void actionPerformed(ActionEvent e) {
+		      @Override
+			public void actionPerformed(ActionEvent e) {
 		    	  game.makeAccusation();
+		    	  draw();
 		      }
 	    });
 	    
 	    JButton skip = new JButton("Skip turn(C)");
 	    skip.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
+		      @Override
+			public void actionPerformed(ActionEvent e) {
 		    	  game.skipTurn();
 		      }
 	    });
 	    
-	    //frame.add(skip, BorderLayout.SOUTH);
 	    JPanel controls = new JPanel();
 	    controls.setLayout(new GridLayout(3, 3));
 	    
@@ -153,10 +155,12 @@ public class GUI{
 
 	    frame.add(draw, BorderLayout.CENTER);
 	    
-
 	    frame.pack();
 	    frame.setResizable(true);
 	    frame.setVisible(true);
+	    
+	    //frame.
+	    //frame.
 	}
 	
 	public void draw() {
@@ -239,5 +243,7 @@ public class GUI{
 		
 		return list.get(group.getSelection().getMnemonic());
 	}
+
+	
 }
 
