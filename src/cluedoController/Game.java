@@ -2,7 +2,6 @@ package cluedoController;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -26,18 +25,12 @@ public class Game {
 	JavaDoc comment eveywhere
 	
 	• JTextField. These should be used to allow each player to enter their name.
-	
-	• Short-Cut Keys. Modern GUIs provide short-cut keys enabling experienced users to operate
-	the program more efficient. For example, a short-cut key could be used to start the next turn,
-	and to access menu items. A KeyListener is needed to implement this.
-	
+
 	• Animations. Providing an animation of certain events in the game will make it more fun. For
 	example, when a player’s token is being moved to another square, you might animate the motion
 	rather than moving it there immediately. Similarly, you could have the tokens themselves be
 	animated to perform different actions when different events happen to them (e.g. when going
 	through a secret passage).
-	
-	
 	 */
 
 	public enum Option {UP, LEFT, DOWN, RIGHT, ENTER, EXIT, STAIR, END, ACCUSATION}
@@ -168,6 +161,8 @@ public class Game {
 			}
 			selectedPlayer = alivePlayers.get(selectedPlayerIndex);
 			dice = random.nextInt(6) + 1;
+			gui.dialog(selectedPlayer.getName() + " is now playing");
+			gui.draw();
 		} else {
 			dice--;
 		}

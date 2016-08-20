@@ -91,6 +91,9 @@ class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 							else
 								g2.setColor(new Color(80, 80, 255)); // Blue
 							break;
+						case CENTER:
+							g2.setColor(new Color(255, 235, 100));
+							break;
 						case NONE:
 							g2.setColor(new Color(100, 235, 100));
 							break;
