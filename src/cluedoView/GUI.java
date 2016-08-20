@@ -3,25 +3,21 @@ package cluedoView;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
-import java.awt.Shape;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -204,7 +200,7 @@ public class GUI{
 		return players.get(group.getSelection().getMnemonic());
 	}
 	
-	public Weapon selectWeapon(ArrayList<Weapon> weapons) {
+	public Weapon selectWeapon(List<Weapon> weapons) {
 		
 		ButtonGroup group = new ButtonGroup();
 	    List<JRadioButton> buttons = new ArrayList<JRadioButton>();
@@ -224,11 +220,11 @@ public class GUI{
 		return weapons.get(group.getSelection().getMnemonic());
 	}
 	
-	public Room selectRoom(ArrayList<Room> rooms) {
+	public Room selectRoom(List<Room> list) {
 		
 		ButtonGroup group = new ButtonGroup();
 	    List<JRadioButton> buttons = new ArrayList<JRadioButton>();
-	    for (Room room : rooms) {
+	    for (Room room : list) {
 	    	
 	      JRadioButton button = new JRadioButton(room.getName());
 	      button.setActionCommand(room.getName());
@@ -241,7 +237,7 @@ public class GUI{
 	    buttons.toArray(inputs);
 	    JOptionPane.showMessageDialog(null, inputs, "Select Player", JOptionPane.PLAIN_MESSAGE);
 		
-		return rooms.get(group.getSelection().getMnemonic());
+		return list.get(group.getSelection().getMnemonic());
 	}
 }
 
@@ -344,9 +340,6 @@ class Draw extends Canvas implements MouseListener{
 		}
 		
 		g2.drawString("Moves left: " + game.getDice(), 10, 15);
-		//TODO draw rooms names
-		//g.drawString(arg0, arg1, arg2);
-		
 		
 	}
 

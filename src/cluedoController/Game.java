@@ -1,15 +1,12 @@
 package cluedoController;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Set;
 
 import cluedoModel.Board;
 import cluedoModel.Card;
@@ -23,9 +20,10 @@ public class Game {
 	
 	/*
 	 
-	JavaDoc comment eveywhere
-	add MouseListener on canvas
 	draw cards
+	draw players in the rooms
+	draw room names
+	JavaDoc comment eveywhere
 	
 	• JTextField. These should be used to allow each player to enter their name.
 	
@@ -39,9 +37,7 @@ public class Game {
 	animated to perform different actions when different events happen to them (e.g. when going
 	through a secret passage).
 	
-	draw players in the rooms
-	draw room names
-	clean up board A E S T H I C S
+	
 	 */
 
 	public enum Option {UP, LEFT, DOWN, RIGHT, ENTER, EXIT, STAIR, END, ACCUSATION}
@@ -145,178 +141,7 @@ public class Game {
 		selectedPlayerIndex = 0;
 		selectedPlayer = activePlayers.get(selectedPlayerIndex);
 		dice = random.nextInt(6) + 1;
-		
-		/*
 
-		//while (this.isRunning) {
-		while (this.isRunning && alivePlayers.size() > 1) {
-			for (int j = 0; j < alivePlayers.size(); j++) {
-				Player player = alivePlayers.get(j);
-				// Start player turn
-				int diceRoll = random.nextInt(6) + 1;
-				System.out.println(player.getName() + "(P" + player.getIndex() + ")" + " is now playing");
-				System.out.println("The dice has rolled " + diceRoll + "!");
-				
-				Room roomToEnter = null;
-				
-				for (;diceRoll > 0; diceRoll--) {
-					board.draw();
-					
-					
-					//System.out.println( "" + player.getX() + " " + player.getY());
-					
-					ArrayList<Option> options = new ArrayList<Option>();
-					// Generate choices
-					//if (player.getX() > 0) { // can move up
-					if (player.getRoom() == null) {
-						if (board.canMoveUp(player)) {
-							//board.g
-							options.add(Option.UP);
-						}
-						
-						if (board.canMoveDown(player)) {
-							options.add(Option.DOWN);
-						}
-						
-						if (board.canMoveLeft(player)) {
-							options.add(Option.LEFT);
-						}
-						
-						if (board.canMoveRight(player)) {
-							options.add(Option.RIGHT);
-						}
-						
-						if (board.canEnterRoom(player)) {
-							options.add(Option.ENTER);
-							roomToEnter = board.entranceRoom(player);
-						}
-						if (board.canMakeAccusation(player)) {
-							options.add(Option.ACCUSATION);
-						}
-					} else {
-							options.add(Option.EXIT);
-							if (board.canEnterStair(player)) {
-								options.add(Option.STAIR);
-								roomToEnter = board.stairRoom(player);
-							}
-					}
-					
-					options.add(Option.END);
-					
-					
-					System.out.println("Pick a move(" + diceRoll + " left):");
-					for (int i = 0; i < options.size(); i++) {
-						switch(options.get(i)) {
-							case UP: {
-								System.out.println("Up("+ i + ")");
-								break;
-							}
-							case DOWN: {
-								System.out.println("Down("+ i + ")");
-								break;
-							}
-							case LEFT: {
-								System.out.println("Left("+ i + ")");
-								break;
-							}
-							case RIGHT: {
-								System.out.println("Right(" + i + ")");
-								break;
-							}
-							case ENTER: {
-								System.out.println("Enter " + roomToEnter.getName()+ "(" + i + ")");
-								break;
-							}
-							case STAIR: {
-								System.out.println(roomToEnter);
-								System.out.println("Stair to " + roomToEnter.getName()+ "(" + i + ")");
-								break;
-							}
-							case EXIT: {
-								System.out.println("Exit " + player.getRoom().getName() + "(" + i + ")");
-								break;
-							}
-							case END: {
-								System.out.println("End turn(" + i + ")");
-								break;
-							}
-							case ACCUSATION: {
-								System.out.println("Make accusation(" + i + ")");
-								break;
-							}
-							default:
-								break;
-							}
-					}
-					
-					// Get choice from user
-					int playerOption = -1;
-					while (!(playerOption >= 0 && playerOption < options.size())) {
-						String inputString;
-						try {
-							inputString = input.next();
-							playerOption = Integer.parseInt(inputString);
-						} catch (InputMismatchException e) {
-						} catch (NumberFormatException e) {
-						} finally {
-							if (!(playerOption >= 0 && playerOption < options.size()))
-								System.out.println("Enter a valid choice:");
-						}
-					}
-					
-					// Execute move
-					switch(options.get(playerOption)) {
-						case UP: {
-							board.moveUp(player);
-							break;
-						}
-						case DOWN: {
-							board.moveDown(player);
-							break;
-						}
-						case LEFT: {
-							board.moveLeft(player);
-							break;
-						}
-						case RIGHT: {
-							board.moveRight(player);
-							break;
-						}
-						case ENTER: {
-							board.enterRoom(player);
-							makeSuggestion(player);
-							break;
-						}
-						case EXIT: {
-							board.exitRoom(player);
-							break;
-						}
-						case STAIR: {
-							board.enterStair(player);
-							makeSuggestion(player);
-							break;
-						}
-						case END: {
-							diceRoll = 0;
-							break;
-						}
-						case ACCUSATION: {
-							makeAccusation(player);
-							diceRoll = 0;
-							break;
-						}
-						default:
-							break;
-						}
-					}
-				
-			}
-			
-			
-		}
-		System.out.println(alivePlayers.get(0).getName() + " is last alive and has Won!");
-		*/
-		
 	}
 	
 	public void handleClick(int row, int col) {
@@ -516,11 +341,11 @@ public class Game {
 	}
 	
 	private Weapon weaponSelection() {
-		return gui.selectWeapon((ArrayList)weapons);
+		return gui.selectWeapon(weapons);
 	}
 	
 	private Room roomSelection() {
-		return gui.selectRoom((ArrayList)board.getRooms());
+		return gui.selectRoom(Board.getRooms());
 	}
 
 	public Board getBoard() {
