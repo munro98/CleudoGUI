@@ -69,67 +69,87 @@ public class GUI{
 	      System.exit(0);
 	    }});
 	    
-	    JButton skip = new JButton("Skip turn");
-	    skip.addActionListener(new ActionListener() {
+	    JButton enterRoom = new JButton("Enter/Exit Room(Q)");
+	    enterRoom.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
 		    	  //TODO
 		      }
 	    });
 	    
-	    JButton suggest = new JButton("Suggest");
-	    suggest.addActionListener(new ActionListener() {
-		      public void actionPerformed(ActionEvent e) {
-		    	  //TODO
-		      }
-	    });
-	    
-	    JButton up = new JButton("Up");
+	    JButton up = new JButton("Up(W)");
 	    up.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
 		    	  game.moveUp();
 		      }
 	    });
 	    
-	    JButton accuse = new JButton("Accuse");
-	    accuse.addActionListener(new ActionListener() {    	
+	    JButton enterStair = new JButton("Enter Stair(E)");
+	    enterStair.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
-		    	  game.makeAccusation();
+		    	  //TODO
 		      }
 	    });
 	    
-	    JButton down = new JButton("Down");
+	    JButton down = new JButton("Down(S)");
 	    down.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
 		    	  game.moveDown();
 		      }
 	    });
 	    
-	    JButton left = new JButton("Left");
+	    JButton left = new JButton("Left(A)");
 	    left.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
 		    	  game.moveLeft();
 		      }
 	    });
 	    
-	    JButton right = new JButton("Right");
+	    JButton right = new JButton("Right(D)");
 	    right.addActionListener(new ActionListener() {
 		      public void actionPerformed(ActionEvent e) {
 		    	  game.moveRight();
 		      }
 	    });
 	    
+	    JButton suggest = new JButton("Suggest(Z)");
+	    suggest.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent e) {
+		    	  //TODO
+		      }
+	    });
+	    
+	    JButton accuse = new JButton("Accuse(X)");
+	    accuse.addActionListener(new ActionListener() {    	
+		      public void actionPerformed(ActionEvent e) {
+		    	  game.makeAccusation();
+		      }
+	    });
+	    
+	    JButton skip = new JButton("Skip turn(C)");
+	    skip.addActionListener(new ActionListener() {
+		      public void actionPerformed(ActionEvent e) {
+		    	  game.skipTurn();
+		      }
+	    });
+	    
 	    //frame.add(skip, BorderLayout.SOUTH);
 	    JPanel controls = new JPanel();
-	    controls.setLayout(new GridLayout(2, 3));
-	    controls.add(suggest);
-	    controls.add(up);
-	    controls.add(accuse);
+	    controls.setLayout(new GridLayout(3, 3));
 	    
+	    controls.add(enterRoom);
+	    controls.add(up);
+	    controls.add(enterStair);
+
 	    controls.add(left);
 	    controls.add(down);
 	    controls.add(right);
 	    
+	    controls.add(suggest);
+	    controls.add(accuse);
+	    controls.add(skip);
+	    
 	    frame.add(controls, BorderLayout.SOUTH);
+	    //frame.add(skip, BorderLayout.EAST);
 	    
 	    menu.add(newGame);
 	    menu.add(quit);
