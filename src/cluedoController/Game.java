@@ -319,6 +319,22 @@ public class Game {
 		
 	}
 	
+	public void handleClick(int row, int col) {
+		//Down
+		if (row == selectedPlayer.getX() + 1 && col == selectedPlayer.getY()) {
+			moveDown();
+		//Up
+		} else if (row == selectedPlayer.getX() - 1 && col == selectedPlayer.getY()) {
+			moveUp();
+		//Right
+		} else if (row == selectedPlayer.getX() && col == selectedPlayer.getY() + 1) {
+			moveRight();
+		//Left
+		} else if (row == selectedPlayer.getX() && col == selectedPlayer.getY() - 1) {
+			moveLeft();
+		}
+	}
+	
 	public void endTurn() {
 		if (dice == 0) {
 			selectedPlayerIndex++;

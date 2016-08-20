@@ -245,15 +245,18 @@ public class GUI{
 	}
 }
 
-class Draw extends Canvas{
+class Draw extends Canvas implements MouseListener{
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 600;
 
 	private Game game;
-
+	private int scale;
+			
 	public Draw(Game game) {
 		this.game = game;
 		this.setBackground(new Color(255, 255, 255));
+		
+		addMouseListener(this);
 	}
 
 
@@ -270,7 +273,7 @@ class Draw extends Canvas{
 	public void paint(Graphics g) {
 		Dimension size = this.getSize();
 		double minDimension = Math.min(size.getWidth(), size.getHeight());
-		int scale = (int) (minDimension / Board.SIZE);
+		scale = (int) (minDimension / Board.SIZE);
 		
 		Graphics2D g2 = (Graphics2D) g;
 		Cell[][] boardCells = game.getBoard().getBoardCells();
@@ -348,7 +351,34 @@ class Draw extends Canvas{
 	}
 
 	public void mouseClicked(MouseEvent arg0) {
-		System.out.println(" " + arg0.getX() + " " + arg0.getY());
+		int row = arg0.getY() / scale;
+		int col = arg0.getX() / scale;
+		//System.out.println(" " + row + " " + col);
+		game.handleClick(row, col);
 		
+	}
+
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+
+	}
+
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+
+	}
+
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+
+	}
+
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+
 	}
 }
