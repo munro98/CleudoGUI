@@ -211,7 +211,7 @@ public class Board{
 	
 	/**
 	 * Returns a 2D array containing each door location on the board.
-	 * @return
+	 * @return RoomEntranceCell[][]
 	 */
 	public RoomEntranceCell[][] getBoardEntranceCells() {
 		return boardSpecialCells;
@@ -266,7 +266,7 @@ public class Board{
 	/**
 	 * Can the player move 1 square up?
 	 * @param player
-	 * @return
+	 * @return boolean
 	 */
 	public boolean canMoveUp(Player player) {
 		if (player.getRoom()!= null)
@@ -293,7 +293,7 @@ public class Board{
 	/**
 	 * Can the player move 1 square left?
 	 * @param player
-	 * @return
+	 * @return boolean
 	 */
 	public boolean canMoveLeft(Player player) {
 		if (player.getRoom()!= null)
@@ -320,7 +320,7 @@ public class Board{
 	/**
 	 * Moves the player 1 square right
 	 * @param player
-	 * @return
+	 * @return boolean
 	 */
 	public boolean canMoveRight(Player player) {
 		if (player.getRoom()!= null)
@@ -344,6 +344,11 @@ public class Board{
 		
 	}
 	
+	/**
+	 * Can the player move into a room?
+	 * @param player
+	 * @return boolean
+	 */
 	public boolean canEnterRoom(Player player) {
 		if (boardSpecialCells[player.getX()][player.getY()] != null) {
 			return true;
@@ -351,10 +356,19 @@ public class Board{
 		return false;
 	}
 	
+	/**
+	 * The room that player is in
+	 * @param player
+	 * @return Room
+	 */
 	public Room entranceRoom(Player player) {
 		return boardSpecialCells[player.getX()][player.getY()].getRoom();
 	}
 	
+	/**
+	 * Moves the player into a room
+	 * @param player
+	 */
 	public void enterRoom(Player player) {
 		//if (boardSpecialCells[player.getX()][player.getY()] != null) {
 		//}
@@ -364,6 +378,10 @@ public class Board{
 		//player.setX(-1);
 	}
 
+	/**
+	 * Moves the player out of a room into the corridor
+	 * @param player
+	 */
 	public void exitRoom(Player player) {
 		RoomEntranceCell cell = player.getRoom().getExit(0);
 		playerCells[cell.getRow()][cell.getCol()] = player;
@@ -373,6 +391,11 @@ public class Board{
 		
 	}
 
+	/**
+	 * Can the player move across the board using a secret corridor
+	 * @param player
+	 * @return
+	 */
 	public boolean canEnterStair(Player player) {
 		if (player.getRoom() == null) {
 			return false;
@@ -383,14 +406,28 @@ public class Board{
 		return false;
 	}
 	
+	/**
+	 * Moves the player into the opposite room
+	 * @param player
+	 */
 	public void enterStair(Player player) {
 		player.setRoom(player.getRoom().getStairRoom());
 	}
 	
+	/**
+	 * The current room containing a secret passageway the player is in
+	 * @param player
+	 * @return Room
+	 */
 	public Room stairRoom(Player player) {
 		return player.getRoom().getStairRoom();
 	}
 	
+	/**
+	 * Can the player make a accusation?
+	 * @param player
+	 * @return boolean
+	 */
 	public boolean canMakeAccusation(Player player) {
 		if (player.getX() > 8 && player.getX() < 18 && player.getY() > 8 && player.getY() < 17) {
 			return true;
@@ -398,6 +435,10 @@ public class Board{
 		return false;
 	}
 
+	/**
+	 * Removes player from play
+	 * @param player
+	 */
 	public void remove(Player player) {
 		playerCells[player.getX()][player.getY()] = null;
 	}
