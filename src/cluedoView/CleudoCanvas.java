@@ -78,8 +78,6 @@ class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 			g = graphics;
 		}
 		
-		
-		
 		Dimension size = this.getSize();
 		double minDimension = Math.min(size.getWidth(), size.getHeight());
 		scale = (int) (minDimension / Board.SIZE);
@@ -87,6 +85,9 @@ class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 		Graphics2D g2 = (Graphics2D) g;
 		Cell[][] boardCells = game.getBoard().getBoardCells();
 		RoomEntranceCell[][] boardSpecialCells = game.getBoard().getBoardEntranceCells();
+		
+		g2.setColor(new Color(255, 255, 255));
+		g2.fill(new Rectangle(0, 0, (int)size.getWidth(), (int)size.getHeight()));
 		
 		g2.setColor(new Color(0, 0, 0));
 		g2.draw(new Rectangle(0, 0, scale * Board.SIZE, scale * Board.SIZE));
