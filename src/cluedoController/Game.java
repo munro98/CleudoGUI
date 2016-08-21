@@ -165,7 +165,7 @@ public class Game {
 			}
 			selectedPlayer = alivePlayers.get(selectedPlayerIndex);
 			dice = random.nextInt(6) + 1;
-			gui.dialog(selectedPlayer.getName() + " is now playing");
+			gui.dialog(selectedPlayer.getPlayerName() + "'s turn.\n" + selectedPlayer.getName() + " is now playing");
 			gui.draw();
 		} else {
 			dice--;

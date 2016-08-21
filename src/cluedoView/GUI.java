@@ -281,7 +281,7 @@ public class GUI{
 	}
 	
 	public String getText(){
-		return "";
+		return "test";
 	}
 }
 
