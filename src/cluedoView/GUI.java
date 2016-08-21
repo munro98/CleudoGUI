@@ -53,11 +53,9 @@ public class GUI{
 
 		JMenuItem newGame = new JMenuItem("New Game");
 		newGame.addActionListener(new ActionListener() {
-			Game g = game;
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				//TODO
-				g = new Game();
+				newGame();
 			}});
 
 		JMenuItem quit = new JMenuItem("Quit");
@@ -350,6 +348,11 @@ public class GUI{
 			return true;
 		}
 		return false;
+	}
+	
+	private void newGame(){
+		frame.dispose();
+		game = new Game();
 	}
 }
 
