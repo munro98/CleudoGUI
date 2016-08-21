@@ -8,6 +8,7 @@ public class Player implements Card{
 	static int indexCounter = 0;
 	
 	private final String name;
+	private String playerName;
 	private List<Card> cards;
 	private int X;
 	private int Y;
@@ -35,6 +36,14 @@ public class Player implements Card{
 		this.index = indexCounter;
 		indexCounter++;
 		
+	}
+	
+	public void setPlayerName(String s){
+		this.playerName = s;
+	}
+	
+	public String getPlayerName(){
+		return this.playerName;
 	}
 	
 	public boolean canRefute(Card c) {

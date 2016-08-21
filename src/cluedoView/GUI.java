@@ -19,6 +19,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 import cluedoController.Game;
 import cluedoModel.Player;
@@ -39,6 +40,11 @@ public class GUI{
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
+		
+		//TODO
+		// Start with 2 lines
+		JTextField text = new JTextField(2);
+		
 
 		JMenuBar bar = new JMenuBar();
 		JMenu menu = new JMenu("File");
@@ -148,6 +154,9 @@ public class GUI{
 
 		frame.add(controls, BorderLayout.SOUTH);
 		//frame.add(skip, BorderLayout.EAST);
+		
+		//TODO
+		frame.add(text);
 
 		menu.add(newGame);
 		menu.add(quit);
@@ -249,6 +258,30 @@ public class GUI{
 		return hashMap.get(group.getSelection());
 	}
 
+	public Player choosePlayer(ArrayList<Player> players, int playTurn) {
+		HashMap<ButtonModel, Player> hashMap = new HashMap<ButtonModel, Player>();
+		ButtonGroup group = new ButtonGroup();
+		List<JRadioButton> buttons = new ArrayList<JRadioButton>();
+		for (Player player : players) {
+			JRadioButton button = new JRadioButton(player.getName());
+			button.setActionCommand(player.getName());
+			buttons.add(button);
+			group.add(button);
+			
+			hashMap.put(button.getModel(), player);
+		}
 
+		buttons.get(0).setSelected(true);
+		JComponent[] inputs = new JComponent[buttons.size()];
+		buttons.toArray(inputs);
+		JOptionPane.showMessageDialog(null, inputs, 
+				"Player " + playTurn + ", select your character.", JOptionPane.PLAIN_MESSAGE);
+
+		return hashMap.get(group.getSelection());
+	}
+	
+	public String getText(){
+		return "";
+	}
 }
 
