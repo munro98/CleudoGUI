@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
@@ -19,6 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 import cluedoController.Game;
 import cluedoModel.Player;
@@ -39,16 +41,19 @@ public class GUI{
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
+		
 
 		JMenuBar bar = new JMenuBar();
 		JMenu menu = new JMenu("File");
 		bar.add(menu);
 
 		JMenuItem newGame = new JMenuItem("New Game");
-		newGame.addActionListener(new ActionListener() {  
+		newGame.addActionListener(new ActionListener() {
+			Game g = game;
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO
+				g = new Game();
 			}});
 
 		JMenuItem quit = new JMenuItem("Quit");
@@ -249,6 +254,35 @@ public class GUI{
 		return hashMap.get(group.getSelection());
 	}
 
+	public Player choosePlayer(ArrayList<Player> players, int playTurn) {
+		HashMap<ButtonModel, Player> hashMap = new HashMap<ButtonModel, Player>();
+		ButtonGroup group = new ButtonGroup();
+		List<JRadioButton> buttons = new ArrayList<JRadioButton>();
+		for (Player player : players) {
+			JRadioButton button = new JRadioButton(player.getName());
+			button.setActionCommand(player.getName());
+			buttons.add(button);
+			group.add(button);
+			
+			hashMap.put(button.getModel(), player);
+		}
 
+		buttons.get(0).setSelected(true);
+		JComponent[] inputs = new JComponent[buttons.size()];
+		buttons.toArray(inputs);
+		JOptionPane.showMessageDialog(null, inputs, 
+				"Player " + playTurn + ", select your character.", JOptionPane.PLAIN_MESSAGE);
+
+		return hashMap.get(group.getSelection());
+	}
+	
+	// Forces the user to input a string
+	public String getText(String message, String title){
+		String input = "";
+		while(input.equals("")){
+			input = JOptionPane.showInputDialog(null, message, title, 1);	
+		}
+		return input;
+	}
 }
 

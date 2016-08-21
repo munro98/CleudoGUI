@@ -25,10 +25,10 @@ public class Game {
 	JavaDoc comment eveywhere
 	fill in any TODO areas
 	
-	• JTextField. These should be used to allow each player to enter their name.
+	ï¿½ JTextField. These should be used to allow each player to enter their name.
 
-	• Animations. Providing an animation of certain events in the game will make it more fun. For
-	example, when a player’s token is being moved to another square, you might animate the motion
+	ï¿½ Animations. Providing an animation of certain events in the game will make it more fun. For
+	example, when a playerï¿½s token is being moved to another square, you might animate the motion
 	rather than moving it there immediately. Similarly, you could have the tokens themselves be
 	animated to perform different actions when different events happen to them (e.g. when going
 	through a secret passage).
@@ -70,22 +70,26 @@ public class Game {
 	private Player selectedPlayer;
 	private Random random; 
 	private int dice;
-
+	
 	public Game() {
 		this.board = new Board();
 		
+		
 		gui = new GUI(this);
-		
+	
 		//Get playerCount
-		//int playerCount = gui.askPlayerCount();
-		int playerCount = 2;
-		
-		System.out.println(playerCount);
-		System.out.println("new Game!");
+		int playerCount = gui.askPlayerCount();
 		
 		activePlayers = new ArrayList<Player>();
-		for (int i = 0; i < playerCount; i++)
-			activePlayers.add(players.get(i));
+		ArrayList<Player> avaliablePlayers = new ArrayList<>(players);
+		
+		// Let each player enter their name and select a character		
+		for (int i = 0; i < playerCount; i++){
+			Player p = gui.choosePlayer(avaliablePlayers, i+1);
+			p.setPlayerName(gui.getText("Enter your name", p.getName()));
+			activePlayers.add(p);
+			avaliablePlayers.remove(p);
+		}
 		
 		alivePlayers = new ArrayList<Player>(activePlayers);
 
@@ -135,7 +139,9 @@ public class Game {
 		selectedPlayerIndex = 0;
 		selectedPlayer = activePlayers.get(selectedPlayerIndex);
 		dice = random.nextInt(6) + 1;
-
+		
+		// Remind starting player it's their turn
+		gui.dialog(selectedPlayer.getPlayerName() + "'s turn.\n" + selectedPlayer.getName() + " is now playing");
 	}
 	
 	public void handleClick(int row, int col) {
@@ -162,7 +168,7 @@ public class Game {
 			}
 			selectedPlayer = alivePlayers.get(selectedPlayerIndex);
 			dice = random.nextInt(6) + 1;
-			gui.dialog(selectedPlayer.getName() + " is now playing");
+			gui.dialog(selectedPlayer.getPlayerName() + "'s turn.\n" + selectedPlayer.getName() + " is now playing");
 			gui.draw();
 		} else {
 			dice--;
