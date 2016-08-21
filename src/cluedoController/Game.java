@@ -412,4 +412,19 @@ public class Game {
 	public int getDice() {
 		return dice;
 	}
+	
+	public String getCards(){
+		if(selectedPlayer == null){
+			return "none";
+		}
+		
+		// Builds the card contents
+		String text = "";
+		for(Card c : selectedPlayer.getCards()){
+			text = text + c.toString() + ", ";
+		}
+		
+		// Strip the trailing ', ' in the string
+		return text.substring(0, text.length()-2);
+	}
 }

@@ -153,7 +153,8 @@ class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 			}
 		}
 		
-		g2.drawString("Moves left: " + game.getDice(), 10, 15);
+		String text = "Moves left: " + game.getDice() + " | Cards: " + game.getCards();
+		g2.drawString(text, 10, 15);
 		
 		if (graphics != null) {
 			graphics.dispose();
