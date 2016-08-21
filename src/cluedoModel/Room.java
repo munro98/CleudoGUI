@@ -6,6 +6,7 @@
 
 package cluedoModel;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +14,13 @@ public class Room implements Card{
 	private final String name;
 	private final List<RoomEntranceCell> exits;
 	private Room stairRoom;
+	private Point location;
 
-	public Room(String name) {
+	public Room(String name, Point p) {
 		this.name = name;
 		this.exits = new ArrayList<RoomEntranceCell>();
 		this.setStairRoom(null);
+		this.location = p;
 	}
 	
 	public void addExit(RoomEntranceCell cell) {
@@ -44,5 +47,9 @@ public class Room implements Card{
 
 	public void setStairRoom(Room stairRoom) {
 		this.stairRoom = stairRoom;
+	}
+	
+	public Point getLocation(){
+		return this.location;
 	}
 }

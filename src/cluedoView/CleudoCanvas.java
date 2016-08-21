@@ -20,6 +20,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -31,6 +32,7 @@ import cluedoController.Game;
 import cluedoModel.Board;
 import cluedoModel.RoomEntranceCell;
 import cluedoModel.Board.Cell;
+import cluedoModel.Room;
 
 class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 	private static final int WIDTH = 600;
@@ -155,6 +157,12 @@ class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 		
 		String text = "Moves left: " + game.getDice() + " | Cards: " + game.getCards();
 		g2.drawString(text, 10, 15);
+		
+		// Draw the room names
+		for(Room r : game.getBoard().getRooms()){
+			Point p = r.getLocation();
+			g2.drawString(r.getName(), scale * p.x, scale * p.y);
+		}
 		
 		if (graphics != null) {
 			graphics.dispose();

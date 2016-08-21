@@ -4,6 +4,7 @@
 
 package cluedoModel;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -21,15 +22,15 @@ public class Board{
 
 	public static final List<Room> rooms = new ArrayList<Room>();
 	static {
-		rooms.add(new Room("Kitchen"));
-		rooms.add(new Room("Ball Room"));
-		rooms.add(new Room("Conservatory"));
-		rooms.add(new Room("Billard Room"));
-		rooms.add(new Room("Library"));
-		rooms.add(new Room("Study"));
-		rooms.add(new Room("Hall"));
-		rooms.add(new Room("Lounge"));
-		rooms.add(new Room("Dining Room"));
+		rooms.add(new Room("Kitchen", new Point(1, 2)));
+		rooms.add(new Room("Ball Room", new Point(10, 3)));
+		rooms.add(new Room("Conservatory", new Point(20, 3)));
+		rooms.add(new Room("Billard Room", new Point(20, 8)));
+		rooms.add(new Room("Library", new Point(20, 15)));
+		rooms.add(new Room("Study", new Point(20, 22)));
+		rooms.add(new Room("Hall", new Point(12, 20)));
+		rooms.add(new Room("Lounge", new Point(1, 20)));
+		rooms.add(new Room("Dining Room", new Point(1, 11)));
 	}
 	
 	String[] boardText = { 
