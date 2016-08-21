@@ -22,23 +22,6 @@ import cluedoView.GUI;
 
 public class Game {
 	
-	/*
-	 
-	draw cards
-	draw players in the rooms
-	draw room names
-	JavaDoc comment eveywhere
-	fill in any TODO areas
-	
-	� JTextField. These should be used to allow each player to enter their name.
-
-	� Animations. Providing an animation of certain events in the game will make it more fun. For
-	example, when a player�s token is being moved to another square, you might animate the motion
-	rather than moving it there immediately. Similarly, you could have the tokens themselves be
-	animated to perform different actions when different events happen to them (e.g. when going
-	through a secret passage).
-	 */
-
 	public enum Option {UP, LEFT, DOWN, RIGHT, ENTER, EXIT, STAIR, END, ACCUSATION}
 
 	public static final List<Weapon> weapons = new ArrayList<Weapon>();

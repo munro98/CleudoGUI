@@ -62,7 +62,8 @@ class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 
 	@Override
 	public void repaint() {
-		paint(this.getGraphics());
+		super.repaint();
+		//paint(this.getGraphics());
 		if (bufferStrategy == null) {
 			createBufferStrategy(3);
 			bufferStrategy = getBufferStrategy();
