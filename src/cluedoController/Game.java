@@ -139,7 +139,9 @@ public class Game {
 		selectedPlayerIndex = 0;
 		selectedPlayer = activePlayers.get(selectedPlayerIndex);
 		dice = random.nextInt(6) + 1;
-
+		
+		// Remind starting player it's their turn
+		gui.dialog(selectedPlayer.getPlayerName() + "'s turn.\n" + selectedPlayer.getName() + " is now playing");
 	}
 	
 	public void handleClick(int row, int col) {
