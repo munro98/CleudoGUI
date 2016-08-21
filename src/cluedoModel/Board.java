@@ -61,23 +61,6 @@ public class Board{
 		boardSpecialCells = new RoomEntranceCell[SIZE][SIZE];
 		playerCells = new Player[SIZE][SIZE];
 		
-		//try {
-			//FileReader reader = new FileReader("src/board.txt");		
-			//BufferedReader bufferedReader = new BufferedReader(reader);
-			//ArrayList<String> lines = new ArrayList<String>();
-			/*
-			String line;
-			while ((line = bufferedReader.readLine()) != null) {
-				lines.add(line);
-				if (line.length() != SIZE) {
-					throw new RuntimeException("Incorrect line length: " + line.length());
-				}
-			}
-			if (lines.size() != SIZE) {
-				throw new RuntimeException("Incorrect line count: " + lines.size());
-			}
-			*/
-			
 			String line;
 			ArrayList<String> lines = new ArrayList<String>(Arrays.asList(boardText));
 			
@@ -106,11 +89,7 @@ public class Board{
 					}
 				}
 			}
-			
-		//} catch (IOException e) {
-			
-		//}
-		
+
 		// I hope I made no mistakes here
 		//Kitchen
 		boardSpecialCells[7][4] = new RoomEntranceCell(rooms.get(0), 7, 4);
@@ -235,6 +214,8 @@ public class Board{
 	}
 	
 	public boolean canMoveDown(Player player) {
+		if (player.getRoom()!= null)
+			return false;
 		if (player.getX() < Board.SIZE - 1 && boardCells[player.getX()+1][player.getY()] == Cell.HALL 
 				&& playerCells[player.getX()+1][player.getY()] == null) {
 			return true;
@@ -251,6 +232,8 @@ public class Board{
 	}
 	
 	public boolean canMoveUp(Player player) {
+		if (player.getRoom()!= null)
+			return false;
 		if (player.getX() > 0 && boardCells[player.getX()-1][player.getY()] == Cell.HALL
 				&& playerCells[player.getX()-1][player.getY()] == null) {
 			return true;
@@ -267,6 +250,8 @@ public class Board{
 	}
 	
 	public boolean canMoveLeft(Player player) {
+		if (player.getRoom()!= null)
+			return false;
 		if (player.getY() > 0 && boardCells[player.getX()][player.getY()-1] == Cell.HALL
 				&& playerCells[player.getX()][player.getY()-1] == null) {
 			return true;
@@ -283,6 +268,8 @@ public class Board{
 	}
 	
 	public boolean canMoveRight(Player player) {
+		if (player.getRoom()!= null)
+			return false;
 		if (player.getY()  < Board.SIZE - 1 && boardCells[player.getX()][player.getY()+1] == Cell.HALL
 				&& playerCells[player.getX()][player.getY()+1] == null) {
 			return true;
@@ -328,6 +315,9 @@ public class Board{
 	}
 
 	public boolean canEnterStair(Player player) {
+		if (player.getRoom() == null) {
+			return false;
+		}
 		if (player.getRoom().getStairRoom() != null) {
 			return true;
 		}

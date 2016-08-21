@@ -184,6 +184,7 @@ class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 	public void keyPressed(KeyEvent e) {
 		switch(e.getKeyCode()) {
 		case KeyEvent.VK_Q: {
+			game.enterExitRoom();
 			break;
 		}
 		case KeyEvent.VK_W: {
@@ -191,6 +192,7 @@ class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 			break;
 		}
 		case KeyEvent.VK_E: {
+			game.enterStair();
 			break;
 		}
 		case KeyEvent.VK_A: {
@@ -210,9 +212,11 @@ class CleudoCanvas extends Canvas implements MouseListener, KeyListener{
 			break;
 		}
 		case KeyEvent.VK_X: {
+			game.makeAccusation();
 			break;
 		}
 		case KeyEvent.VK_C: {
+			game.skipTurn();
 			break;
 		}
 		}

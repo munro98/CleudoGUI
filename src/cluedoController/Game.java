@@ -23,6 +23,7 @@ public class Game {
 	draw players in the rooms
 	draw room names
 	JavaDoc comment eveywhere
+	fill in any TODO areas
 	
 	• JTextField. These should be used to allow each player to enter their name.
 
@@ -201,6 +202,24 @@ public class Game {
 		
 	}
 	
+	/** if the player is not in a room try put then in a room else exit the room */
+	public void enterExitRoom() {
+		if (selectedPlayer.getRoom() == null) {
+			if (board.canEnterRoom(selectedPlayer)) {
+				board.enterRoom(selectedPlayer);
+				gui.draw();
+				endTurn();
+			} else {
+				gui.dialog("You must be on an entrance to do that!");
+			}
+		} else{
+			board.exitRoom(selectedPlayer);
+			gui.draw();
+			endTurn();
+		}
+	}
+	
+	/*
 	public void enterRoom() {
 		if (board.canEnterRoom(selectedPlayer)) {
 			board.enterRoom(selectedPlayer);
@@ -218,12 +237,15 @@ public class Game {
 		}
 		
 	}
+	*/
 	
 	public void enterStair() {
 		if (board.canEnterStair(selectedPlayer)) {
 			board.enterStair(selectedPlayer);
 			gui.draw();
 			endTurn();
+		} else {
+			gui.dialog("You must be in a corner room to do that!");
 		}
 		
 	}
@@ -241,9 +263,10 @@ public class Game {
 				gui.dialog("You must be in a room to do that!");
 				return;
 			}
-			//TODO
 			Player playerSelection = gui.selectPlayer(players);
 			Weapon weaponSelection = gui.selectWeapon(weapons);
+			
+			System.out.println(playerSelection + " " + weaponSelection);
 
 			for (Player p : activePlayers) {
 				if (p.canRefute(room)) {
