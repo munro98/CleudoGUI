@@ -1,3 +1,7 @@
+/**
+ * Stores the hardcoded Cluedo board.
+ */
+
 package cluedoModel;
 
 import java.util.ArrayList;
@@ -189,23 +193,42 @@ public class Board{
 		
 	}
 	
+	/**
+	 * Returns the 2D cell array containing each square on the board.
+	 * @return boardCells
+	 */
 	public Cell[][] getBoardCells() {
 		return this.boardCells;
 	}
 	
+	/**
+	 * Returns the 2D array of the map, where each player currently is.
+	 * @return playerCells
+	 */
 	public Player[][] getPlayerCells() {
 		return this.playerCells;
 	}
 	
-
+	/**
+	 * Returns a 2D array containing each door location on the board.
+	 * @return
+	 */
 	public RoomEntranceCell[][] getBoardEntranceCells() {
 		return boardSpecialCells;
 	}
 
+	/**
+	 * Returns the list of the rooms within the Cluedo board.
+	 * @return rooms
+	 */
 	public static List<Room> getRooms() {
 		return rooms;
 	}
 
+	/**
+	 * Inserts the players into the 2D array for the board.
+	 * @param activePlayers
+	 */
 	public void spawnPlayers(ArrayList<Player> activePlayers) {
 		for (Player player : activePlayers) {
 			this.playerCells[player.getStartX()][player.getStartY()] = player;
@@ -213,6 +236,11 @@ public class Board{
 		
 	}
 	
+	/**
+	 * Can the player move 1 square down?
+	 * @param player
+	 * @return boolean
+	 */
 	public boolean canMoveDown(Player player) {
 		if (player.getRoom()!= null)
 			return false;
@@ -223,7 +251,11 @@ public class Board{
 		return false;
 		
 	}
-
+	
+	/**
+	 * Moves the player 1 square down
+	 * @param player
+	 */
 	public void moveDown(Player player) {
 		playerCells[player.getX()][player.getY()] = null;
 		playerCells[player.getX()+1][player.getY()] = player;
@@ -231,6 +263,11 @@ public class Board{
 		
 	}
 	
+	/**
+	 * Can the player move 1 square up?
+	 * @param player
+	 * @return
+	 */
 	public boolean canMoveUp(Player player) {
 		if (player.getRoom()!= null)
 			return false;
@@ -242,6 +279,10 @@ public class Board{
 		
 	}
 
+	/**
+	 * Moves the player 1 square up.
+	 * @param player
+	 */
 	public void moveUp(Player player) {
 		playerCells[player.getX()][player.getY()] = null;
 		playerCells[player.getX()-1][player.getY()] = player;
@@ -249,6 +290,11 @@ public class Board{
 		
 	}
 	
+	/**
+	 * Can the player move 1 square left?
+	 * @param player
+	 * @return
+	 */
 	public boolean canMoveLeft(Player player) {
 		if (player.getRoom()!= null)
 			return false;
@@ -260,6 +306,10 @@ public class Board{
 		
 	}
 
+	/**
+	 * Moves the player 1 square left
+	 * @param player
+	 */
 	public void moveLeft(Player player) {
 		playerCells[player.getX()][player.getY()] = null;
 		playerCells[player.getX()][player.getY()-1] = player;
@@ -267,6 +317,11 @@ public class Board{
 		
 	}
 	
+	/**
+	 * Moves the player 1 square right
+	 * @param player
+	 * @return
+	 */
 	public boolean canMoveRight(Player player) {
 		if (player.getRoom()!= null)
 			return false;
@@ -278,6 +333,10 @@ public class Board{
 		
 	}
 
+	/**
+	 * Moves the player 1 square right
+	 * @param player
+	 */
 	public void moveRight(Player player) {
 		playerCells[player.getX()][player.getY()] = null;
 		playerCells[player.getX()][player.getY()+1] = player;

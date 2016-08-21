@@ -1,3 +1,8 @@
+/**
+ * Handles all game logic and rules for the Cluedo game. Has a GUI for displaying
+ * the current state and getting user input.
+ */
+
 package cluedoController;
 
 import java.util.ArrayList;
@@ -144,6 +149,11 @@ public class Game {
 		gui.dialog(selectedPlayer.getPlayerName() + "'s turn.\n" + selectedPlayer.getName() + " is now playing");
 	}
 	
+	/**
+	 * Moves the player to a adjacent non-diagonal square on the board if possible.
+	 * @param row
+	 * @param col
+	 */
 	public void handleClick(int row, int col) {
 		//Down
 		if (row == selectedPlayer.getX() + 1 && col == selectedPlayer.getY()) {
@@ -160,6 +170,9 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Moves play to the next player when they are out of moves.
+	 */
 	public void endTurn() {
 		if (dice == 0) {
 			selectedPlayerIndex++;
@@ -175,6 +188,9 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Moves the current player up 1 square if possible.
+	 */
 	public void moveUp() {
 		if (board.canMoveUp(selectedPlayer)) {
 			board.moveUp(selectedPlayer);
@@ -183,6 +199,9 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Moves the player down 1 square if possible.
+	 */
 	public void moveDown() {
 		if (board.canMoveDown(selectedPlayer)) {
 			board.moveDown(selectedPlayer);
@@ -191,6 +210,9 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Moves the player left 1 square if possible.
+	 */
 	public void moveLeft() {
 		if (board.canMoveLeft(selectedPlayer)) {
 			board.moveLeft(selectedPlayer);
@@ -199,6 +221,10 @@ public class Game {
 		}
 	}
 	
+	
+	/**
+	 * Moves the player right 1 square if posssible.
+	 */
 	public void moveRight() {
 		if (board.canMoveRight(selectedPlayer)) {
 			board.moveRight(selectedPlayer);
@@ -208,7 +234,9 @@ public class Game {
 		
 	}
 	
-	/** if the player is not in a room try put then in a room else exit the room */
+	/** 
+	 * if the player is not in a room try put then in a room else exit the room 
+	 */
 	public void enterExitRoom() {
 		if (selectedPlayer.getRoom() == null) {
 			if (board.canEnterRoom(selectedPlayer)) {
@@ -225,6 +253,9 @@ public class Game {
 		}
 	}
 	
+	/**
+	 * Moves the player into a room if possible.
+	 */
 	/*
 	public void enterRoom() {
 		if (board.canEnterRoom(selectedPlayer)) {
@@ -234,7 +265,12 @@ public class Game {
 		}
 		
 	}
+	*/
 	
+	/**
+	 * Moves the player back into the corridor from their current room, from the door they entered.
+	 */
+	/*
 	public void exitRoom() {
 		if (selectedPlayer.getRoom() != null) {
 			board.exitRoom(selectedPlayer);
@@ -245,6 +281,10 @@ public class Game {
 	}
 	*/
 	
+	/**
+	 * Moves the player to the room on the other side of the board if there is a 
+	 * Secrete corridor in the room.
+	 */
 	public void enterStair() {
 		if (board.canEnterStair(selectedPlayer)) {
 			board.enterStair(selectedPlayer);
@@ -256,13 +296,26 @@ public class Game {
 		
 	}
 	
+	/**
+	 * Ends the players turn.
+	 */
 	public void skipTurn() {
 		dice = 0;
 		endTurn();
 		
 	}
 	
-	
+	/**
+	 * Player suggests a a solution to the murder.<br>
+	 * <p>Player selects a room, killer, and murder weapon.</p>
+	 * <p>
+	 * Player must be in the room they suggest the murder was committed in. 
+	 * Each player takes turns seeing if they can disprove that suggestion.
+	 * If a player can disprove it, they tell the player 1 of their cards 
+	 * that disprove the accusation.
+	 * </p>
+	 * <p>The player can do this any amount of times, and cannot lost or win doing so.</p>
+	 */
 	public void makeSuggestion() {
 			Room room = selectedPlayer.getRoom();
 			if (room == null) {
@@ -302,6 +355,14 @@ public class Game {
 		
 	}
 	
+	/**
+	 * <p>Player selects a room, killer, and murder weapon.</p>
+	 * <p>
+	 * These are compared to the solution. If the player is correct they win
+	 * the game, ending it. Otherwise they lose and are removed from play.
+	 * </p>
+	 * <p>If all players make false accusations. Everyone looses and the game ends.</p>
+	 */
 	public void makeAccusation() {
 		
 		Player accuser = selectedPlayer;

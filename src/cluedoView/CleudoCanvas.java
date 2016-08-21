@@ -1,3 +1,18 @@
+/**
+ * <h1>
+ * Displaying the Cluedo board.
+ * </h1>
+ * <b>Colours:<br></b>
+ * <ul>
+ * <li>Peach: Player. Active players have their number next to them</li>
+ * <li>Blue: Door</li>
+ * <li>White: Room</li>
+ * <li>Yellow: Corridor</li>
+ * <li>Green: Wall</li>
+ * </ul>
+ * 
+ */
+
 package cluedoView;
 
 import java.awt.Canvas;

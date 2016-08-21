@@ -1,3 +1,7 @@
+/**
+ * Gets user inputs via popups for use in the Game class.
+ */
+
 package cluedoView;
 
 import java.awt.BorderLayout;
@@ -168,14 +172,26 @@ public class GUI{
 		//frame.
 	}
 
+	/**
+	 * Updates the GUI display.
+	 */
 	public void draw() {
 		draw.repaint();
 	}
 
+	/**
+	 * Displays a popup window displaying input text
+	 * @param message
+	 */
 	public void dialog(String message){
 		JOptionPane.showMessageDialog(frame, message);
 	}
 
+	/**
+	 * Popup that requires the player to enter a number from 3 to 6
+	 * 
+	 * @return number of players
+	 */
 	public int askPlayerCount() {
 		int playerCount = -1;
 		while (!(playerCount > 2 && playerCount < 7)) {
@@ -189,6 +205,11 @@ public class GUI{
 		return playerCount;
 	}
 
+	/**
+	 * Gives user a popup to select from a list of players
+	 * @param players
+	 * @return player
+	 */
 	public Player selectPlayer(ArrayList<Player> players) {
 		HashMap<ButtonModel, Player> hashMap = new HashMap<ButtonModel, Player>();
 		ButtonGroup group = new ButtonGroup();
@@ -210,6 +231,11 @@ public class GUI{
 		return hashMap.get(group.getSelection());
 	}
 
+	/**
+	 * Gives user a popup to select from a list of weapons
+	 * @param weapons
+	 * @return weapon
+	 */
 	public Weapon selectWeapon(List<Weapon> weapons) {
 		HashMap<ButtonModel, Weapon> hashMap = new HashMap<ButtonModel, Weapon>();
 		ButtonGroup group = new ButtonGroup();
@@ -232,6 +258,11 @@ public class GUI{
 		return hashMap.get(group.getSelection());
 	}
 
+	/**
+	 * Gives user a popup to select from a list of rooms
+	 * @param list
+	 * @return room
+	 */
 	public Room selectRoom(List<Room> list) {
 		HashMap<ButtonModel, Room> hashMap = new HashMap<ButtonModel, Room>();
 		ButtonGroup group = new ButtonGroup();
@@ -254,6 +285,12 @@ public class GUI{
 		return hashMap.get(group.getSelection());
 	}
 
+	/**
+	 * User selects from a list of players to choose to play as
+	 * @param players
+	 * @param player number
+	 * @return player
+	 */
 	public Player choosePlayer(ArrayList<Player> players, int playTurn) {
 		HashMap<ButtonModel, Player> hashMap = new HashMap<ButtonModel, Player>();
 		ButtonGroup group = new ButtonGroup();
@@ -276,7 +313,12 @@ public class GUI{
 		return hashMap.get(group.getSelection());
 	}
 	
-	// Forces the user to input a string
+	/**
+	 *  Forces the user to input a string
+	 * @param message
+	 * @param title
+	 * @return input
+	 */
 	public String getText(String message, String title){
 		String input = "";
 		while(input.equals("")){
