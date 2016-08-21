@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
@@ -41,20 +42,18 @@ public class GUI{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(new BorderLayout());
 		
-		//TODO
-		// Start with 2 lines
-		JTextField text = new JTextField(2);
-		
 
 		JMenuBar bar = new JMenuBar();
 		JMenu menu = new JMenu("File");
 		bar.add(menu);
 
 		JMenuItem newGame = new JMenuItem("New Game");
-		newGame.addActionListener(new ActionListener() {  
+		newGame.addActionListener(new ActionListener() {
+			Game g = game;
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//TODO
+				g = new Game();
 			}});
 
 		JMenuItem quit = new JMenuItem("Quit");
@@ -154,9 +153,6 @@ public class GUI{
 
 		frame.add(controls, BorderLayout.SOUTH);
 		//frame.add(skip, BorderLayout.EAST);
-		
-		//TODO
-		frame.add(text);
 
 		menu.add(newGame);
 		menu.add(quit);
@@ -280,8 +276,13 @@ public class GUI{
 		return hashMap.get(group.getSelection());
 	}
 	
-	public String getText(){
-		return "test";
+	// Forces the user to input a string
+	public String getText(String message, String title){
+		String input = "";
+		while(input.equals("")){
+			input = JOptionPane.showInputDialog(null, message, title, 1);	
+		}
+		return input;
 	}
 }
 

@@ -70,12 +70,13 @@ public class Game {
 	private Player selectedPlayer;
 	private Random random; 
 	private int dice;
-
+	
 	public Game() {
 		this.board = new Board();
 		
-		gui = new GUI(this);
 		
+		gui = new GUI(this);
+	
 		//Get playerCount
 		int playerCount = gui.askPlayerCount();
 		
@@ -85,7 +86,7 @@ public class Game {
 		// Let each player enter their name and select a character		
 		for (int i = 0; i < playerCount; i++){
 			Player p = gui.choosePlayer(avaliablePlayers, i+1);
-			p.setPlayerName(gui.getText());
+			p.setPlayerName(gui.getText("Enter your name", p.getName()));
 			activePlayers.add(p);
 			avaliablePlayers.remove(p);
 		}
