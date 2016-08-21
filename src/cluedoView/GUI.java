@@ -64,7 +64,9 @@ public class GUI{
 		quit.addActionListener(new ActionListener() {  
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				if(confirm()){
+					System.exit(0);
+				}				
 			}});
 
 		JButton enterRoom = new JButton("Enter/Exit Room(Q)");
@@ -325,6 +327,29 @@ public class GUI{
 			input = JOptionPane.showInputDialog(null, message, title, 1);	
 		}
 		return input;
+	}
+	
+	/**
+	 * Gives the user a yes/no popup prompt
+	 * @return boolean
+	 */
+	public boolean confirm(){
+		Object[] text = {"Yes", "No"};
+		
+		int option = JOptionPane.showOptionDialog(frame, 
+				"Are you sure you want to do this?",
+				"Confirm action",
+				JOptionPane.YES_NO_OPTION,
+				JOptionPane.QUESTION_MESSAGE,
+				null,
+				text, 0
+				);
+		draw();
+		
+		if(option == 0){
+			return true;
+		}
+		return false;
 	}
 }
 

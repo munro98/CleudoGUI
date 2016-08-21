@@ -106,8 +106,6 @@ public class Game {
 		Room randomRoom = board.getRooms().get(random.nextInt(roomSize));
 		
 		solution = new Suggestion(randomPlayer, randomWeapon, randomRoom);
-		// Debug Print solution
-		System.out.println(solution.toString());
 		
 		{
 			List<Card> cardsLeft = new LinkedList<Card>();
@@ -325,11 +323,9 @@ public class Game {
 			Player playerSelection = gui.selectPlayer(players);
 			Weapon weaponSelection = gui.selectWeapon(weapons);
 			
-			System.out.println(playerSelection + " " + weaponSelection);
 
 			for (Player p : activePlayers) {
 				if (p.canRefute(room)) {
-					System.out.println(p.getName() + " Can refute the murder room");
 					gui.dialog(p.getName() + " Can refute the murder room");
 					return;
 				}
@@ -337,7 +333,6 @@ public class Game {
 			
 			for (Player p : activePlayers) {
 				if (p.canRefute(playerSelection)) {
-					System.out.println(p.getName() + " Can refute the murderer");
 					gui.dialog(p.getName() + " Can refute the murderer");
 					return;
 				}
@@ -345,13 +340,11 @@ public class Game {
 			
 			for (Player p : activePlayers) {
 				if (p.canRefute(weaponSelection)) {
-					System.out.println(p.getName() + " Can refute the murder weapon");
 					gui.dialog(p.getName() + " Can refute the murder weapon");
 					return;
 				}
 			}
 			gui.dialog("Suggestion cannot be refuted.");
-			System.out.println("Suggestion cannot be refuted.");
 		
 	}
 	
@@ -364,6 +357,11 @@ public class Game {
 	 * <p>If all players make false accusations. Everyone looses and the game ends.</p>
 	 */
 	public void makeAccusation() {
+		
+		// Make sure the user actually wanted to do this!
+		if(!gui.confirm()){
+			return;
+		}
 		
 		Player accuser = selectedPlayer;
 
