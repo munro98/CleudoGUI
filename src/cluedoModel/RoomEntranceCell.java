@@ -1,3 +1,7 @@
+/**
+ * Wrapper class for a doorway in the Cluedo board
+ */
+
 package cluedoModel;
 
 public class RoomEntranceCell{

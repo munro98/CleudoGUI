@@ -1,3 +1,9 @@
+/**
+ * Wrapper for a Room in the board<br>
+ * <p>Contains the weapons, players, and if it has a 
+ * Secret doorway inside.</p>
+ */
+
 package cluedoModel;
 
 import java.util.ArrayList;

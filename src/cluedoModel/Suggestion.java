@@ -1,3 +1,6 @@
+/**
+ * Wrapper class for the player, weapon, and room a murder happened in.
+ */
 package cluedoModel;
 
 public class Suggestion {

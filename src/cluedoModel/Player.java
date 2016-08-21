@@ -1,3 +1,17 @@
+/**
+ * <h1>Container for a user playing the cluedo game</h1>
+ * <p>
+ * Contains:
+ * </p>
+ * <ul>
+ * <li>Players location on the board</li>
+ * <li>Character name</li>
+ * <li>Player's name</li>
+ * <li>Players cards</li>
+ * <li>If the're in a room</li>
+ * <li>What room the're in</li>
+ * </ul>
+ */
 package cluedoModel;
 
 import java.util.ArrayList;

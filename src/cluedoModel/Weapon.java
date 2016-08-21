@@ -1,3 +1,6 @@
+/**
+ * Wrapper class for a Cluedo weapon
+ */
 package cluedoModel;
 
 public class Weapon implements Card{
